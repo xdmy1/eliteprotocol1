@@ -96,8 +96,8 @@ export function About() {
   return (
     <section
       id="about"
-      className="py-32 relative overflow-hidden section-light-gray"
-      style={{ backgroundColor: '#E5E7EB' }}
+      className="py-32 relative overflow-hidden section-beige"
+      style={{ backgroundColor: '#EDE0CE' }}
     >
       <div className="max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-20">
         {/* Section Header */}

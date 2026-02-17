@@ -133,6 +133,24 @@
   --primary-foreground: #FFFFFF;
 }
 
+.section-beige {
+  --primary: #7A6535;
+  --primary-bright: #6B5830;
+  --gold: #7A6535;
+  --gold-bright: #6B5830;
+  --blue: #1B3A8C;
+  --text-heading: #2C1E0A;
+  --text-body: #4A3A24;
+  --text-caption: #6B5A42;
+  --text-faint: #8C7A62;
+  --card: #FFFFFF;
+  --card-foreground: #2C1E0A;
+  --border: rgba(139, 115, 64, 0.25);
+  --border-subtle: rgba(139, 115, 64, 0.14);
+  --input-background: rgba(255, 255, 255, 0.5);
+  --primary-foreground: #FFFFFF;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

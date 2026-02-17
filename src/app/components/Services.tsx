@@ -116,9 +116,9 @@ export function Services() {
   return (
     <section
       id="services"
-      className="py-32 relative overflow-hidden section-light-white"
+      className="py-32 relative overflow-hidden section-beige"
       style={{
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#EDE0CE',
       }}
     >
       <div className="max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-20">

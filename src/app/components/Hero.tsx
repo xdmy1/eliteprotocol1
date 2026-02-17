@@ -53,7 +53,7 @@ export function Hero() {
       <div
         className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none z-10"
         style={{
-          background: 'linear-gradient(to bottom, transparent, #FFFFFF)',
+          background: 'linear-gradient(to bottom, transparent, #EDE0CE)',
         }}
       />
 
