@@ -76,7 +76,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
 
       {/* Title */}
       <h3
-        className="text-2xl font-medium mb-4 transition-colors duration-500"
+        className="text-2xl font-bold mb-4 transition-colors duration-500"
         style={{ fontFamily: 'Cormorant, serif', color: 'var(--text-heading)' }}
       >
         {service.title}

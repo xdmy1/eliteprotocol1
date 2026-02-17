@@ -70,7 +70,7 @@ export function Hero() {
               className="mb-6 inline-block"
             >
               <span
-                className="tracking-[0.3em] text-[10px] font-medium uppercase"
+                className="tracking-[0.3em] text-[14px] font-medium uppercase"
                 style={{ color: 'var(--primary)', fontFamily: 'Alesand, sans-serif' }}
               >
                 Elite Protocol — Institute of Etiquette, Image & Presence

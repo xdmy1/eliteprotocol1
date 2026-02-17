@@ -77,7 +77,7 @@ function PrincipleCard({ principle, index }: { principle: typeof principles[0]; 
     >
       <GoldLine className="mb-6" width="2rem" />
       <h4
-        className="text-xl mb-4 font-medium"
+        className="text-xl mb-4 font-bold"
         style={{ fontFamily: 'Cormorant, serif', color: 'var(--text-heading)' }}
       >
         {principle.title}
