@@ -67,7 +67,7 @@ function PrincipleCard({ principle, index }: { principle: typeof principles[0]; 
       }}
       whileHover={{
         y: -4,
-        boxShadow: '0 8px 40px rgba(184,147,90,0.08)',
+        boxShadow: '0 8px 40px rgba(201,168,76,0.06)',
       }}
       className="p-10 border"
       style={{

@@ -58,7 +58,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       }}
       whileHover={{
         y: -4,
-        boxShadow: '0 8px 40px rgba(184,147,90,0.1)',
+        boxShadow: '0 8px 40px rgba(201,168,76,0.08)',
       }}
       className="group p-10 border transition-colors duration-500"
       style={{

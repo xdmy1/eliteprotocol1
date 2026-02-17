@@ -91,16 +91,16 @@ function PricingCard({ plan, index }: { plan: typeof pricingPlans[0]; index: num
       whileHover={{
         y: -4,
         boxShadow: plan.popular
-          ? '0 12px 60px rgba(184,147,90,0.15)'
-          : '0 8px 40px rgba(184,147,90,0.08)',
+          ? '0 12px 60px rgba(201,168,76,0.1)'
+          : '0 8px 40px rgba(0,0,0,0.2)',
       }}
       className={`relative overflow-hidden transition-all duration-500 border ${
         plan.popular ? 'scale-[1.02]' : ''
       }`}
       style={{
         backgroundColor: 'var(--card)',
-        borderColor: plan.popular ? 'rgba(184,147,90,0.3)' : 'var(--border-subtle)',
-        boxShadow: plan.popular ? '0 0 40px rgba(184,147,90,0.1)' : 'none',
+        borderColor: plan.popular ? 'rgba(201,168,76,0.25)' : 'var(--border-subtle)',
+        boxShadow: plan.popular ? '0 0 40px rgba(201,168,76,0.08)' : 'none',
       }}
     >
       {/* Popular Badge */}
@@ -108,7 +108,7 @@ function PricingCard({ plan, index }: { plan: typeof pricingPlans[0]; index: num
         <div
           className="text-center py-3 text-[9px] tracking-[0.25em] font-medium"
           style={{
-            background: 'linear-gradient(to right, var(--primary), var(--primary-bright))',
+            background: 'linear-gradient(to right, #C9A84C, #D4B85C)',
             color: 'var(--primary-foreground)',
           }}
         >
@@ -170,7 +170,7 @@ function PricingCard({ plan, index }: { plan: typeof pricingPlans[0]; index: num
               className="flex items-start gap-3 text-xs leading-relaxed font-light"
               style={{ color: 'var(--text-body)' }}
             >
-              <span className="text-sm mt-0.5" style={{ color: 'var(--primary)' }}>&check;</span>
+              <span className="mt-1.5" style={{ color: 'var(--primary)' }}>&mdash;</span>
               <span>{feature}</span>
             </li>
           ))}

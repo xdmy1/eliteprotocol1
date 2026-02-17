@@ -25,7 +25,7 @@ function AppContent() {
     <div className="min-h-screen" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif' }}>
       {/* Navigation */}
       <nav
-        className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b shadow-[0_1px_20px_rgba(184,147,90,0.05)]"
+        className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
         style={{
           backgroundColor: 'var(--nav-bg)',
           borderColor: 'var(--border)',
@@ -38,7 +38,7 @@ function AppContent() {
               <img
                 src={logoFull}
                 alt="Elite Protocol"
-                className="h-5 object-contain opacity-90"
+                className="h-9 object-contain opacity-90"
                 style={{ filter: 'var(--logo-filter)' }}
               />
             </div>
@@ -225,43 +225,43 @@ function AppContent() {
         className="border-t py-24"
         style={{
           backgroundColor: 'var(--background-footer)',
-          borderColor: 'rgba(184, 147, 90, 0.1)',
+          borderColor: 'rgba(201, 168, 76, 0.08)',
         }}
       >
         <div className="max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-20">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-20 mb-20">
             <div className="col-span-1 md:col-span-5">
-              <img src={logoFull} alt="Elite Protocol" className="h-6 mb-10 object-contain brightness-0 invert opacity-90" />
-              <p className="text-[#B8B4AE] text-sm leading-relaxed mb-10 font-light">
+              <img src={logoFull} alt="Elite Protocol" className="h-12 mb-10 object-contain brightness-0 invert opacity-90" />
+              <p className="text-[#A8B2CC] text-sm leading-relaxed mb-10 font-light">
                 Institute of Etiquette, Image & Presence
               </p>
-              <p className="text-[#8A8680] text-xs leading-relaxed max-w-md font-light">
+              <p className="text-[#7A86A8] text-xs leading-relaxed max-w-md font-light">
                 Elevating individuals through the mastery of etiquette, refined image, and commanding presence.
               </p>
             </div>
             <div className="col-span-1 md:col-span-3">
-              <h4 className="text-[#B8935A] mb-10 text-[10px] tracking-[0.2em] font-medium">NAVIGATE</h4>
+              <h4 className="text-[#C9A84C] mb-10 text-[10px] tracking-[0.2em] font-medium">NAVIGATE</h4>
               <ul className="space-y-5 text-xs font-light">
-                <li><button onClick={() => scrollToSection('services')} className="text-[#8A8680] hover:text-[#F0ECE6] transition-colors duration-300">Services</button></li>
-                <li><button onClick={() => scrollToSection('pricing')} className="text-[#8A8680] hover:text-[#F0ECE6] transition-colors duration-300">Investment</button></li>
-                <li><button onClick={() => scrollToSection('about')} className="text-[#8A8680] hover:text-[#F0ECE6] transition-colors duration-300">Philosophy</button></li>
-                <li><button onClick={() => scrollToSection('contact')} className="text-[#8A8680] hover:text-[#F0ECE6] transition-colors duration-300">Contact</button></li>
+                <li><button onClick={() => scrollToSection('services')} className="text-[#7A86A8] hover:text-[#E8ECF5] transition-colors duration-300">Services</button></li>
+                <li><button onClick={() => scrollToSection('pricing')} className="text-[#7A86A8] hover:text-[#E8ECF5] transition-colors duration-300">Investment</button></li>
+                <li><button onClick={() => scrollToSection('about')} className="text-[#7A86A8] hover:text-[#E8ECF5] transition-colors duration-300">Philosophy</button></li>
+                <li><button onClick={() => scrollToSection('contact')} className="text-[#7A86A8] hover:text-[#E8ECF5] transition-colors duration-300">Contact</button></li>
               </ul>
             </div>
             <div className="col-span-1 md:col-span-4">
-              <h4 className="text-[#B8935A] mb-10 text-[10px] tracking-[0.2em] font-medium">CONNECT</h4>
-              <ul className="space-y-5 text-xs text-[#8A8680] font-light">
+              <h4 className="text-[#C9A84C] mb-10 text-[10px] tracking-[0.2em] font-medium">CONNECT</h4>
+              <ul className="space-y-5 text-xs text-[#7A86A8] font-light">
                 <li>contact@eliteprotocol.com</li>
                 <li>+1 (555) 123-4567</li>
                 <li className="pt-4">432 Park Avenue<br/>New York, NY 10022</li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-[#B8935A]/10 pt-10 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-[#5C5955] font-light">
+          <div className="border-t border-[#C9A84C]/10 pt-10 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-[#4E5874] font-light">
             <p>&copy; 2026 Elite Protocol. All rights reserved.</p>
             <div className="flex gap-10 text-[10px]">
-              <button className="hover:text-[#8A8680] transition-colors duration-300">Privacy</button>
-              <button className="hover:text-[#8A8680] transition-colors duration-300">Terms</button>
+              <button className="hover:text-[#7A86A8] transition-colors duration-300">Privacy</button>
+              <button className="hover:text-[#7A86A8] transition-colors duration-300">Terms</button>
             </div>
           </div>
         </div>

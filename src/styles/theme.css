@@ -1,170 +1,185 @@
 @custom-variant dark (&:is(.dark *));
 
-/* ─── Light Mode (Default) ─── */
+/* ─── Light Mode (Default) — Deep Blue + Gold ─── */
 :root {
   --font-size: 16px;
 
-  /* Section backgrounds */
-  --background: #FAF8F5;
-  --background-hero-from: #FAF8F5;
-  --background-hero-to: #F5F0EB;
-  --background-services-from: #FFFFFF;
-  --background-services-to: #F8F9FC;
-  --background-pricing: #F5F3F0;
-  --background-about: #FAF7F2;
-  --background-contact: #F2EDE6;
-  --background-footer: #1a1a1a;
+  /* Brand colors */
+  --blue: #336AEB;
+  --blue-light: #5A88F0;
+  --blue-dark: #1B3A8C;
+  --gold: #C9A84C;
+  --gold-bright: #D4B85C;
+  --gold-deep: #B8952E;
 
-  /* Text */
-  --foreground: #1a1a1a;
-  --text-heading: #1a1a1a;
-  --text-body: #4a4a4a;
-  --text-caption: #7a7a7a;
-  --text-faint: #9a9a9a;
+  /* Section backgrounds — deep rich blues */
+  --background: #0E1B3D;
+  --background-hero-from: #0A1432;
+  --background-hero-to: #142452;
+  --background-services-from: #111E42;
+  --background-services-to: #0E1B3D;
+  --background-pricing: #0C1836;
+  --background-about: #111E42;
+  --background-contact: #0E1B3D;
+  --background-footer: #060E24;
 
-  /* Cards & surfaces */
-  --card: #FFFFFF;
-  --card-foreground: #1a1a1a;
-  --popover: #FFFFFF;
-  --popover-foreground: #1a1a1a;
+  /* Text — light on dark blue */
+  --foreground: #E8ECF5;
+  --text-heading: #FFFFFF;
+  --text-body: #B0BDD6;
+  --text-caption: #7E90B5;
+  --text-faint: #5A6D94;
+
+  /* Cards & surfaces — slightly lighter blue */
+  --card: #152551;
+  --card-foreground: #E8ECF5;
+  --popover: #152551;
+  --popover-foreground: #E8ECF5;
 
   /* Navigation */
-  --nav-bg: rgba(255, 255, 255, 0.8);
-  --nav-text: #4a4a4a;
-  --nav-text-active: #1a1a1a;
+  --nav-bg: rgba(10, 20, 50, 0.88);
+  --nav-text: #8A9DC2;
+  --nav-text-active: #FFFFFF;
 
-  /* Primary (gold) */
-  --primary: #B8935A;
-  --primary-bright: #D4A96A;
-  --primary-foreground: #FFFFFF;
+  /* Primary (gold — luxury accent) */
+  --primary: #C9A84C;
+  --primary-bright: #D4B85C;
+  --primary-foreground: #0A1432;
 
   /* Secondary */
-  --secondary: #F5F3F0;
-  --secondary-foreground: #1a1a1a;
+  --secondary: #1A2D5E;
+  --secondary-foreground: #E8ECF5;
 
   /* Muted */
-  --muted: #F5F3F0;
-  --muted-foreground: #7a7a7a;
+  --muted: #1A2D5E;
+  --muted-foreground: #7E90B5;
 
   /* Accent */
-  --accent: #F5F3F0;
-  --accent-foreground: #1a1a1a;
+  --accent: #1A2D5E;
+  --accent-foreground: #E8ECF5;
 
   /* Destructive */
   --destructive: #d4183d;
   --destructive-foreground: #ffffff;
 
   /* Borders & inputs */
-  --border: rgba(184, 147, 90, 0.15);
-  --border-subtle: rgba(184, 147, 90, 0.1);
+  --border: rgba(201, 168, 76, 0.15);
+  --border-subtle: rgba(201, 168, 76, 0.08);
   --input: transparent;
-  --input-background: #F5F3F0;
-  --switch-background: #E5E2DE;
+  --input-background: #1A2D5E;
+  --switch-background: #1A2D5E;
 
-  /* Logo */
-  --logo-filter: none;
+  /* Logo — invert to white on dark blue bg */
+  --logo-filter: brightness(0) invert(1);
 
   /* Misc */
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: #B8935A;
-  --chart-1: #B8935A;
-  --chart-2: #D4A96A;
-  --chart-3: #7a7a7a;
-  --chart-4: #1a1a1a;
-  --chart-5: #4a4a4a;
+  --ring: #C9A84C;
+  --chart-1: #336AEB;
+  --chart-2: #C9A84C;
+  --chart-3: #7E90B5;
+  --chart-4: #FFFFFF;
+  --chart-5: #B0BDD6;
   --radius: 0.625rem;
 
   /* Sidebar */
-  --sidebar: #F5F3F0;
-  --sidebar-foreground: #1a1a1a;
-  --sidebar-primary: #B8935A;
-  --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #F5F3F0;
-  --sidebar-accent-foreground: #1a1a1a;
-  --sidebar-border: rgba(184, 147, 90, 0.15);
-  --sidebar-ring: #B8935A;
+  --sidebar: #0C1836;
+  --sidebar-foreground: #E8ECF5;
+  --sidebar-primary: #C9A84C;
+  --sidebar-primary-foreground: #0A1432;
+  --sidebar-accent: #1A2D5E;
+  --sidebar-accent-foreground: #E8ECF5;
+  --sidebar-border: rgba(201, 168, 76, 0.12);
+  --sidebar-ring: #C9A84C;
 
   /* Scrollbar */
-  --scrollbar-track: #F5F3F0;
-  --scrollbar-thumb: rgba(184, 147, 90, 0.25);
-  --scrollbar-thumb-hover: rgba(184, 147, 90, 0.45);
+  --scrollbar-track: #0E1B3D;
+  --scrollbar-thumb: rgba(201, 168, 76, 0.2);
+  --scrollbar-thumb-hover: rgba(201, 168, 76, 0.35);
 
   /* Selection */
-  --selection-bg: rgba(184, 147, 90, 0.2);
-  --selection-text: #1a1a1a;
+  --selection-bg: rgba(201, 168, 76, 0.25);
+  --selection-text: #FFFFFF;
 }
 
-/* ─── Dark Mode ─── */
+/* ─── Dark Mode — Even deeper midnight blue ─── */
 .dark {
-  --background: #0a0e17;
-  --background-hero-from: #0a0e17;
-  --background-hero-to: #0a0e17;
-  --background-services-from: #0f1521;
-  --background-services-to: #0f1521;
-  --background-pricing: #0a0e17;
-  --background-about: #0f1521;
-  --background-contact: #0a0e17;
-  --background-footer: #060911;
+  --blue: #5A88F0;
+  --blue-light: #7AA0F5;
+  --blue-dark: #336AEB;
+  --gold: #D4B85C;
+  --gold-bright: #E0C76E;
+  --gold-deep: #C9A84C;
 
-  --foreground: #F0ECE6;
-  --text-heading: #F0ECE6;
-  --text-body: #B8B4AE;
-  --text-caption: #8A8680;
-  --text-faint: #5C5955;
+  --background: #060D1F;
+  --background-hero-from: #050B1A;
+  --background-hero-to: #0A1432;
+  --background-services-from: #0A1230;
+  --background-services-to: #060D1F;
+  --background-pricing: #050B1A;
+  --background-about: #0A1230;
+  --background-contact: #060D1F;
+  --background-footer: #030712;
 
-  --card: #0f1521;
-  --card-foreground: #F0ECE6;
-  --popover: #0f1521;
-  --popover-foreground: #F0ECE6;
+  --foreground: #E8ECF5;
+  --text-heading: #F0F4FF;
+  --text-body: #9AADCF;
+  --text-caption: #6A7FA6;
+  --text-faint: #3E5278;
 
-  --nav-bg: rgba(10, 14, 23, 0.8);
-  --nav-text: #B8B4AE;
-  --nav-text-active: #F0ECE6;
+  --card: #0C1836;
+  --card-foreground: #E8ECF5;
+  --popover: #0C1836;
+  --popover-foreground: #E8ECF5;
 
-  --primary: #B8935A;
-  --primary-bright: #D4A96A;
-  --primary-foreground: #0a0e17;
+  --nav-bg: rgba(5, 11, 26, 0.9);
+  --nav-text: #7E90B5;
+  --nav-text-active: #F0F4FF;
 
-  --secondary: #151c2c;
-  --secondary-foreground: #F0ECE6;
+  --primary: #D4B85C;
+  --primary-bright: #E0C76E;
+  --primary-foreground: #050B1A;
 
-  --muted: #151c2c;
-  --muted-foreground: #8A8680;
+  --secondary: #0F1D40;
+  --secondary-foreground: #E8ECF5;
 
-  --accent: #151c2c;
-  --accent-foreground: #F0ECE6;
+  --muted: #0F1D40;
+  --muted-foreground: #6A7FA6;
 
-  --border: rgba(184, 147, 90, 0.1);
-  --border-subtle: rgba(184, 147, 90, 0.06);
+  --accent: #0F1D40;
+  --accent-foreground: #E8ECF5;
+
+  --border: rgba(201, 168, 76, 0.1);
+  --border-subtle: rgba(201, 168, 76, 0.06);
   --input: transparent;
-  --input-background: #151c2c;
-  --switch-background: #151c2c;
+  --input-background: #0F1D40;
+  --switch-background: #0F1D40;
 
   --logo-filter: brightness(0) invert(1);
 
-  --ring: #B8935A;
-  --chart-1: #B8935A;
-  --chart-2: #D4A96A;
-  --chart-3: #8A8680;
-  --chart-4: #F0ECE6;
-  --chart-5: #B8B4AE;
+  --ring: #D4B85C;
+  --chart-1: #5A88F0;
+  --chart-2: #D4B85C;
+  --chart-3: #6A7FA6;
+  --chart-4: #F0F4FF;
+  --chart-5: #9AADCF;
 
-  --sidebar: #060911;
-  --sidebar-foreground: #F0ECE6;
-  --sidebar-primary: #B8935A;
-  --sidebar-primary-foreground: #0a0e17;
-  --sidebar-accent: #151c2c;
-  --sidebar-accent-foreground: #F0ECE6;
-  --sidebar-border: rgba(184, 147, 90, 0.1);
-  --sidebar-ring: #B8935A;
+  --sidebar: #030712;
+  --sidebar-foreground: #E8ECF5;
+  --sidebar-primary: #D4B85C;
+  --sidebar-primary-foreground: #050B1A;
+  --sidebar-accent: #0F1D40;
+  --sidebar-accent-foreground: #E8ECF5;
+  --sidebar-border: rgba(201, 168, 76, 0.08);
+  --sidebar-ring: #D4B85C;
 
-  --scrollbar-track: #0a0e17;
-  --scrollbar-thumb: rgba(184, 147, 90, 0.2);
-  --scrollbar-thumb-hover: rgba(184, 147, 90, 0.4);
+  --scrollbar-track: #060D1F;
+  --scrollbar-thumb: rgba(201, 168, 76, 0.15);
+  --scrollbar-thumb-hover: rgba(201, 168, 76, 0.3);
 
-  --selection-bg: rgba(184, 147, 90, 0.3);
-  --selection-text: #F0ECE6;
+  --selection-bg: rgba(201, 168, 76, 0.2);
+  --selection-text: #F0F4FF;
 }
 
 @theme inline {
@@ -206,6 +221,131 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* ─── Satin / silk fabric animation for Hero ─── */
+
+/* Slow drift — like light moving across draped satin */
+@keyframes satin-drift {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+/* Gentle breathing — like fabric catching light */
+@keyframes satin-breathe-1 {
+  0%, 100% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(0deg);
+  }
+  30% {
+    opacity: 0.45;
+    transform: translate(2%, -1%) rotate(0.3deg);
+  }
+  70% {
+    opacity: 0.2;
+    transform: translate(-1%, 1%) rotate(-0.2deg);
+  }
+}
+
+@keyframes satin-breathe-2 {
+  0%, 100% {
+    opacity: 0.15;
+    transform: translate(0, 0) rotate(0deg);
+  }
+  40% {
+    opacity: 0;
+    transform: translate(-2%, 2%) rotate(-0.3deg);
+  }
+  80% {
+    opacity: 0.4;
+    transform: translate(1%, -1%) rotate(0.2deg);
+  }
+}
+
+@keyframes satin-breathe-3 {
+  0%, 100% {
+    opacity: 0.1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes gold-whisper {
+  0%, 100% {
+    opacity: 0.02;
+  }
+  50% {
+    opacity: 0.06;
+  }
+}
+
+/* Base satin — very dark navy with barely-there movement */
+.hero-satin-bg {
+  background: linear-gradient(
+    160deg,
+    #081230 0%,
+    #0B1738 18%,
+    #0E1C42 35%,
+    #0B1738 52%,
+    #091434 68%,
+    #0C1940 85%,
+    #081230 100%
+  );
+  background-size: 200% 200%;
+  animation: satin-drift 30s ease-in-out infinite;
+}
+
+/* Satin highlight layer 1 — soft light catching a fold */
+.hero-satin-fold-1 {
+  background: radial-gradient(
+    ellipse 70% 50% at 25% 35%,
+    rgba(20, 40, 90, 0.6) 0%,
+    rgba(15, 30, 70, 0.2) 40%,
+    transparent 70%
+  );
+  animation: satin-breathe-1 20s ease-in-out infinite;
+}
+
+/* Satin highlight layer 2 — opposite side fold */
+.hero-satin-fold-2 {
+  background: radial-gradient(
+    ellipse 65% 55% at 75% 65%,
+    rgba(18, 36, 82, 0.5) 0%,
+    rgba(12, 25, 60, 0.15) 45%,
+    transparent 70%
+  );
+  animation: satin-breathe-2 25s ease-in-out infinite;
+}
+
+/* Satin sheen — the faintest bright catch, like light on silk */
+.hero-satin-sheen {
+  background: radial-gradient(
+    ellipse 40% 35% at 55% 40%,
+    rgba(51, 106, 235, 0.07) 0%,
+    rgba(30, 65, 150, 0.03) 50%,
+    transparent 70%
+  );
+  animation: satin-breathe-3 18s ease-in-out infinite 4s;
+}
+
+/* Gold whisper — barely there warmth */
+.hero-gold-whisper {
+  background: radial-gradient(
+    ellipse 50% 40% at 70% 25%,
+    rgba(201, 168, 76, 0.04) 0%,
+    transparent 60%
+  );
+  animation: gold-whisper 14s ease-in-out infinite;
 }
 
 @layer base {

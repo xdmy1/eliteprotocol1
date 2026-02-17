@@ -180,7 +180,7 @@ export function Contact() {
                 >
                   <div
                     className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-8"
-                    style={{ backgroundColor: 'rgba(184,147,90,0.1)' }}
+                    style={{ backgroundColor: 'rgba(201,168,76,0.12)' }}
                   >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="2">
                       <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round"/>
