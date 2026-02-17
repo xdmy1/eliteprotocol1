@@ -33,15 +33,22 @@ function AppContent() {
       >
         <div className="max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-20">
           <div className="flex items-center justify-between h-24">
-            {/* Logo */}
-            <div className="flex items-center">
-              <img
-                src={logoFull}
-                alt="Elite Protocol"
-                className="h-9 object-contain opacity-90"
-                style={{ filter: 'var(--logo-filter)' }}
-              />
-            </div>
+            {/* Logo — gold gradient */}
+            <div
+              className="flex items-center h-9"
+              style={{
+                background: 'linear-gradient(135deg, #B8952E, #C9A84C, #D4B85C, #E0C76E, #D4B85C, #C9A84C)',
+                WebkitMaskImage: `url(${logoFull})`,
+                WebkitMaskSize: 'contain',
+                WebkitMaskRepeat: 'no-repeat',
+                WebkitMaskPosition: 'left center',
+                maskImage: `url(${logoFull})`,
+                maskSize: 'contain',
+                maskRepeat: 'no-repeat',
+                maskPosition: 'left center',
+                width: '200px',
+              }}
+            />
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-16 text-[10px] tracking-[0.2em] font-normal">
@@ -231,7 +238,21 @@ function AppContent() {
         <div className="max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-20">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-20 mb-20">
             <div className="col-span-1 md:col-span-5">
-              <img src={logoFull} alt="Elite Protocol" className="h-12 mb-10 object-contain brightness-0 invert opacity-90" />
+              <div
+                className="h-12 mb-10"
+                style={{
+                  background: 'linear-gradient(135deg, #B8952E, #C9A84C, #D4B85C, #E0C76E, #D4B85C, #C9A84C)',
+                  WebkitMaskImage: `url(${logoFull})`,
+                  WebkitMaskSize: 'contain',
+                  WebkitMaskRepeat: 'no-repeat',
+                  WebkitMaskPosition: 'left center',
+                  maskImage: `url(${logoFull})`,
+                  maskSize: 'contain',
+                  maskRepeat: 'no-repeat',
+                  maskPosition: 'left center',
+                  width: '260px',
+                }}
+              />
               <p className="text-[#A8B2CC] text-sm leading-relaxed mb-10 font-light">
                 Institute of Etiquette, Image & Presence
               </p>
