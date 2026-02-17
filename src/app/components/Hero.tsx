@@ -40,7 +40,7 @@ export function Hero() {
     <section
       id="home"
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 sm:pt-24"
     >
       {/* Satin fabric base */}
       <div className="absolute inset-0 hero-satin-bg" />
@@ -80,7 +80,7 @@ export function Hero() {
       />
 
       {/* Content */}
-      <div className="relative z-20 max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-20 w-full py-32">
+      <div className="relative z-20 max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-20 w-full py-16 sm:py-32">
         <div className="max-w-6xl mx-auto">
           {/* Main heading */}
           <div className="mb-16">
@@ -143,7 +143,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.1 }}
-              className="max-w-2xl mb-16"
+              className="max-w-2xl mb-10 sm:mb-16"
             >
               <p className="text-base leading-[1.8] font-light" style={{ color: 'rgba(176, 189, 214, 0.9)' }}>
                 A comprehensive approach to personal refinement. We work with discerning individuals to develop authentic presence, impeccable etiquette, and lasting confidence.
@@ -190,7 +190,7 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.5 }}
-            className="mt-32 pt-16 border-t"
+            className="mt-16 sm:mt-32 pt-10 sm:pt-16 border-t"
             style={{ borderColor: 'rgba(201, 168, 76, 0.15)' }}
           >
             <div className="grid grid-cols-3 gap-8 sm:gap-16 max-w-3xl">
