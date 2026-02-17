@@ -73,7 +73,7 @@ export function Hero() {
                 className="tracking-[0.3em] text-[10px] font-medium uppercase"
                 style={{ color: 'var(--primary)' }}
               >
-                Elite Protocol
+                Elite Protocol — Institute of Etiquette, Image & Presence
               </span>
             </motion.div>
 
