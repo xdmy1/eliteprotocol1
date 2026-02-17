@@ -58,7 +58,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       }}
       whileHover={{
         y: -4,
-        boxShadow: '0 8px 40px rgba(201,168,76,0.08)',
+        boxShadow: '0 8px 40px rgba(211,182,127,0.1)',
       }}
       className="group p-10 border transition-colors duration-500"
       style={{
@@ -116,9 +116,9 @@ export function Services() {
   return (
     <section
       id="services"
-      className="py-32 relative overflow-hidden"
+      className="py-32 relative overflow-hidden section-light-white"
       style={{
-        background: 'linear-gradient(to bottom, var(--background-services-from), var(--background-services-to))',
+        backgroundColor: '#FFFFFF',
       }}
     >
       <div className="max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-20">

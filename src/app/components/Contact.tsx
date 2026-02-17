@@ -42,7 +42,7 @@ export function Contact() {
     <section
       id="contact"
       className="py-32 relative overflow-hidden"
-      style={{ backgroundColor: 'var(--background-contact)' }}
+      style={{ backgroundColor: '#162044' }}
     >
       <div className="max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
         {/* Section Header */}
@@ -180,7 +180,7 @@ export function Contact() {
                 >
                   <div
                     className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-8"
-                    style={{ backgroundColor: 'rgba(201,168,76,0.12)' }}
+                    style={{ backgroundColor: 'rgba(211,182,127,0.12)' }}
                   >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="2">
                       <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round"/>

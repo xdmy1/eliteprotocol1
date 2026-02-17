@@ -18,7 +18,7 @@ export function GoldLine({ className = '', width = '3rem' }: GoldLineProps) {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="h-px"
         style={{
-          background: 'linear-gradient(to right, #336AEB, var(--primary))',
+          background: 'linear-gradient(to right, var(--blue), var(--primary))',
         }}
       />
     </div>

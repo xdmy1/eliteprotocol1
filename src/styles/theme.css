@@ -1,6 +1,4 @@
-@custom-variant dark (&:is(.dark *));
-
-/* ─── Light Mode (Default) — Deep Blue + Gold ─── */
+/* ─── Elite Protocol — Blue + Gold (#D3B67F) Theme ─── */
 :root {
   --font-size: 16px;
 
@@ -8,19 +6,16 @@
   --blue: #336AEB;
   --blue-light: #5A88F0;
   --blue-dark: #1B3A8C;
-  --gold: #C9A84C;
-  --gold-bright: #D4B85C;
-  --gold-deep: #B8952E;
+  --gold: #D3B67F;
+  --gold-bright: #E0C9A0;
+  --gold-deep: #B89A5D;
 
-  /* Section backgrounds — deep rich blues */
+  /* Section backgrounds — dark blues (default for dark sections) */
   --background: #0E1B3D;
   --background-hero-from: #0A1432;
   --background-hero-to: #142452;
-  --background-services-from: #111E42;
-  --background-services-to: #0E1B3D;
   --background-pricing: #0C1836;
-  --background-about: #111E42;
-  --background-contact: #0E1B3D;
+  --background-contact: #162044;
   --background-footer: #060E24;
 
   /* Text — light on dark blue */
@@ -42,8 +37,8 @@
   --nav-text-active: #FFFFFF;
 
   /* Primary (gold — luxury accent) */
-  --primary: #C9A84C;
-  --primary-bright: #D4B85C;
+  --primary: #D3B67F;
+  --primary-bright: #E0C9A0;
   --primary-foreground: #0A1432;
 
   /* Secondary */
@@ -63,8 +58,8 @@
   --destructive-foreground: #ffffff;
 
   /* Borders & inputs */
-  --border: rgba(201, 168, 76, 0.15);
-  --border-subtle: rgba(201, 168, 76, 0.08);
+  --border: rgba(211, 182, 127, 0.15);
+  --border-subtle: rgba(211, 182, 127, 0.08);
   --input: transparent;
   --input-background: #1A2D5E;
   --switch-background: #1A2D5E;
@@ -75,9 +70,9 @@
   /* Misc */
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: #C9A84C;
+  --ring: #D3B67F;
   --chart-1: #336AEB;
-  --chart-2: #C9A84C;
+  --chart-2: #D3B67F;
   --chart-3: #7E90B5;
   --chart-4: #FFFFFF;
   --chart-5: #B0BDD6;
@@ -86,100 +81,56 @@
   /* Sidebar */
   --sidebar: #0C1836;
   --sidebar-foreground: #E8ECF5;
-  --sidebar-primary: #C9A84C;
+  --sidebar-primary: #D3B67F;
   --sidebar-primary-foreground: #0A1432;
   --sidebar-accent: #1A2D5E;
   --sidebar-accent-foreground: #E8ECF5;
-  --sidebar-border: rgba(201, 168, 76, 0.12);
-  --sidebar-ring: #C9A84C;
+  --sidebar-border: rgba(211, 182, 127, 0.12);
+  --sidebar-ring: #D3B67F;
 
   /* Scrollbar */
   --scrollbar-track: #0E1B3D;
-  --scrollbar-thumb: rgba(201, 168, 76, 0.2);
-  --scrollbar-thumb-hover: rgba(201, 168, 76, 0.35);
+  --scrollbar-thumb: rgba(211, 182, 127, 0.2);
+  --scrollbar-thumb-hover: rgba(211, 182, 127, 0.35);
 
   /* Selection */
-  --selection-bg: rgba(201, 168, 76, 0.25);
+  --selection-bg: rgba(211, 182, 127, 0.25);
   --selection-text: #FFFFFF;
 }
 
-/* ─── Dark Mode — Even deeper midnight blue ─── */
-.dark {
-  --blue: #5A88F0;
-  --blue-light: #7AA0F5;
-  --blue-dark: #336AEB;
-  --gold: #D4B85C;
-  --gold-bright: #E0C76E;
-  --gold-deep: #C9A84C;
+/* ─── Light Section Overrides ─── */
+.section-light-white {
+  --primary: #8B7340;
+  --primary-bright: #7A6535;
+  --gold: #8B7340;
+  --gold-bright: #7A6535;
+  --text-heading: #111827;
+  --text-body: #374151;
+  --text-caption: #4B5563;
+  --text-faint: #6B7280;
+  --card: #F3F4F6;
+  --card-foreground: #111827;
+  --border: rgba(139, 115, 64, 0.2);
+  --border-subtle: rgba(139, 115, 64, 0.12);
+  --input-background: #F3F4F6;
+  --primary-foreground: #FFFFFF;
+}
 
-  --background: #060D1F;
-  --background-hero-from: #050B1A;
-  --background-hero-to: #0A1432;
-  --background-services-from: #0A1230;
-  --background-services-to: #060D1F;
-  --background-pricing: #050B1A;
-  --background-about: #0A1230;
-  --background-contact: #060D1F;
-  --background-footer: #030712;
-
-  --foreground: #E8ECF5;
-  --text-heading: #F0F4FF;
-  --text-body: #9AADCF;
-  --text-caption: #6A7FA6;
-  --text-faint: #3E5278;
-
-  --card: #0C1836;
-  --card-foreground: #E8ECF5;
-  --popover: #0C1836;
-  --popover-foreground: #E8ECF5;
-
-  --nav-bg: rgba(5, 11, 26, 0.9);
-  --nav-text: #7E90B5;
-  --nav-text-active: #F0F4FF;
-
-  --primary: #D4B85C;
-  --primary-bright: #E0C76E;
-  --primary-foreground: #050B1A;
-
-  --secondary: #0F1D40;
-  --secondary-foreground: #E8ECF5;
-
-  --muted: #0F1D40;
-  --muted-foreground: #6A7FA6;
-
-  --accent: #0F1D40;
-  --accent-foreground: #E8ECF5;
-
-  --border: rgba(201, 168, 76, 0.1);
-  --border-subtle: rgba(201, 168, 76, 0.06);
-  --input: transparent;
-  --input-background: #0F1D40;
-  --switch-background: #0F1D40;
-
-  --logo-filter: brightness(0) invert(1);
-
-  --ring: #D4B85C;
-  --chart-1: #5A88F0;
-  --chart-2: #D4B85C;
-  --chart-3: #6A7FA6;
-  --chart-4: #F0F4FF;
-  --chart-5: #9AADCF;
-
-  --sidebar: #030712;
-  --sidebar-foreground: #E8ECF5;
-  --sidebar-primary: #D4B85C;
-  --sidebar-primary-foreground: #050B1A;
-  --sidebar-accent: #0F1D40;
-  --sidebar-accent-foreground: #E8ECF5;
-  --sidebar-border: rgba(201, 168, 76, 0.08);
-  --sidebar-ring: #D4B85C;
-
-  --scrollbar-track: #060D1F;
-  --scrollbar-thumb: rgba(201, 168, 76, 0.15);
-  --scrollbar-thumb-hover: rgba(201, 168, 76, 0.3);
-
-  --selection-bg: rgba(201, 168, 76, 0.2);
-  --selection-text: #F0F4FF;
+.section-light-gray {
+  --primary: #8B7340;
+  --primary-bright: #7A6535;
+  --gold: #8B7340;
+  --gold-bright: #7A6535;
+  --text-heading: #111827;
+  --text-body: #374151;
+  --text-caption: #4B5563;
+  --text-faint: #6B7280;
+  --card: #FFFFFF;
+  --card-foreground: #111827;
+  --border: rgba(139, 115, 64, 0.2);
+  --border-subtle: rgba(139, 115, 64, 0.12);
+  --input-background: #FFFFFF;
+  --primary-foreground: #FFFFFF;
 }
 
 @theme inline {
@@ -342,7 +293,7 @@
 .hero-gold-whisper {
   background: radial-gradient(
     ellipse 50% 40% at 70% 25%,
-    rgba(201, 168, 76, 0.04) 0%,
+    rgba(211, 182, 127, 0.04) 0%,
     transparent 60%
   );
   animation: gold-whisper 14s ease-in-out infinite;

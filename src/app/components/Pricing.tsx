@@ -91,7 +91,7 @@ function PricingCard({ plan, index }: { plan: typeof pricingPlans[0]; index: num
       whileHover={{
         y: -4,
         boxShadow: plan.popular
-          ? '0 12px 60px rgba(201,168,76,0.1)'
+          ? '0 12px 60px rgba(211,182,127,0.1)'
           : '0 8px 40px rgba(0,0,0,0.2)',
       }}
       className={`relative overflow-hidden transition-all duration-500 border ${
@@ -99,8 +99,8 @@ function PricingCard({ plan, index }: { plan: typeof pricingPlans[0]; index: num
       }`}
       style={{
         backgroundColor: 'var(--card)',
-        borderColor: plan.popular ? 'rgba(201,168,76,0.25)' : 'var(--border-subtle)',
-        boxShadow: plan.popular ? '0 0 40px rgba(201,168,76,0.08)' : 'none',
+        borderColor: plan.popular ? 'rgba(211,182,127,0.25)' : 'var(--border-subtle)',
+        boxShadow: plan.popular ? '0 0 40px rgba(211,182,127,0.08)' : 'none',
       }}
     >
       {/* Popular Badge */}
@@ -108,8 +108,8 @@ function PricingCard({ plan, index }: { plan: typeof pricingPlans[0]; index: num
         <div
           className="text-center py-3 text-[9px] tracking-[0.25em] font-medium"
           style={{
-            background: 'linear-gradient(to right, #C9A84C, #D4B85C)',
-            color: 'var(--primary-foreground)',
+            background: 'linear-gradient(to right, #B89A5D, #D3B67F)',
+            color: '#0A1432',
           }}
         >
           RECOMMENDED
@@ -186,7 +186,7 @@ function PricingCard({ plan, index }: { plan: typeof pricingPlans[0]; index: num
             plan.popular
               ? {
                   backgroundColor: 'var(--primary)',
-                  color: 'var(--primary-foreground)',
+                  color: '#0A1432',
                 }
               : {
                   backgroundColor: 'transparent',

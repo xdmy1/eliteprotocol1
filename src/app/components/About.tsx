@@ -18,7 +18,7 @@ function AboutStatCounter({ value, suffix, label }: { value: number; suffix: str
     <div ref={ref} className="text-center">
       <div
         className="text-4xl mb-3 font-light"
-        style={{ fontFamily: 'Cormorant, serif', color: 'var(--primary-bright)' }}
+        style={{ fontFamily: 'Cormorant, serif', color: 'var(--primary)' }}
       >
         {formatted}
       </div>
@@ -67,7 +67,7 @@ function PrincipleCard({ principle, index }: { principle: typeof principles[0]; 
       }}
       whileHover={{
         y: -4,
-        boxShadow: '0 8px 40px rgba(201,168,76,0.06)',
+        boxShadow: '0 8px 40px rgba(211,182,127,0.08)',
       }}
       className="p-10 border"
       style={{
@@ -96,8 +96,8 @@ export function About() {
   return (
     <section
       id="about"
-      className="py-32 relative overflow-hidden"
-      style={{ backgroundColor: 'var(--background-about)' }}
+      className="py-32 relative overflow-hidden section-light-gray"
+      style={{ backgroundColor: '#E5E7EB' }}
     >
       <div className="max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-20">
         {/* Section Header */}
@@ -116,7 +116,7 @@ export function About() {
             style={{ fontFamily: 'Cormorant, serif' }}
           >
             <span style={{ color: 'var(--text-heading)' }}>Where Refinement</span><br/>
-            <span style={{ color: 'var(--primary-bright)' }}>Meets Authenticity</span>
+            <span style={{ color: 'var(--primary)' }}>Meets Authenticity</span>
           </h2>
         </SectionReveal>
 

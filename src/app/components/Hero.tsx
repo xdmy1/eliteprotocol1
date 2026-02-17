@@ -1,27 +1,5 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { useCountUp } from '../hooks/useCountUp';
-
-function StatCounter({ end, suffix, label }: { end: number; suffix: string; label: string }) {
-  const { ref, formatted } = useCountUp({ end, suffix, duration: 2200 });
-
-  return (
-    <div ref={ref}>
-      <div
-        className="text-3xl font-light mb-2"
-        style={{ fontFamily: 'Cormorant, serif', color: 'var(--primary-bright)' }}
-      >
-        {formatted}
-      </div>
-      <div
-        className="text-[10px] tracking-[0.15em] font-light uppercase leading-relaxed"
-        style={{ color: 'var(--text-caption)' }}
-      >
-        {label}
-      </div>
-    </div>
-  );
-}
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -67,23 +45,23 @@ export function Hero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           y: glowY2,
-          background: 'radial-gradient(ellipse at bottom left, rgba(201,168,76,0.03) 0%, transparent 50%)',
+          background: 'radial-gradient(ellipse at bottom left, rgba(211,182,127,0.03) 0%, transparent 50%)',
         }}
       />
 
       {/* Bottom gradient fade into next section */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
+        className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none z-10"
         style={{
-          background: 'linear-gradient(to bottom, transparent, var(--background-services-from))',
+          background: 'linear-gradient(to bottom, transparent, #FFFFFF)',
         }}
       />
 
       {/* Content */}
-      <div className="relative z-20 max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-20 w-full py-16 sm:py-32">
+      <div className="relative z-20 max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-20 w-full py-16 pb-32 sm:py-32 sm:pb-48">
         <div className="max-w-6xl mx-auto">
           {/* Main heading */}
-          <div className="mb-16">
+          <div>
             {/* Tagline */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -118,7 +96,7 @@ export function Hero() {
               <span
                 className="block font-normal text-[clamp(4rem,8vw,7.5rem)] mt-1"
                 style={{
-                  background: 'linear-gradient(135deg, #C9A84C, #D4B85C, #E0C76E, #D4B85C)',
+                  background: 'linear-gradient(135deg, #B89A5D, #D3B67F, #E0C9A0, #D3B67F)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -163,7 +141,7 @@ export function Hero() {
                 whileTap={{ scale: 0.98 }}
                 className="px-11 py-4 text-[10px] tracking-[0.2em] font-medium transition-all duration-300"
                 style={{
-                  background: 'linear-gradient(135deg, #C9A84C, #D4B85C)',
+                  background: 'linear-gradient(135deg, #B89A5D, #D3B67F)',
                   color: '#0A1432',
                 }}
               >
@@ -177,28 +155,13 @@ export function Hero() {
                 className="px-11 py-4 text-[10px] tracking-[0.2em] font-light transition-all duration-300 border"
                 style={{
                   color: 'rgba(255,255,255,0.7)',
-                  borderColor: 'rgba(201, 168, 76, 0.3)',
+                  borderColor: 'rgba(211, 182, 127, 0.3)',
                 }}
               >
                 VIEW SERVICES
               </motion.button>
             </motion.div>
           </div>
-
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.5 }}
-            className="mt-16 sm:mt-32 pt-10 sm:pt-16 border-t"
-            style={{ borderColor: 'rgba(201, 168, 76, 0.15)' }}
-          >
-            <div className="grid grid-cols-3 gap-8 sm:gap-16 max-w-3xl">
-              <StatCounter end={15} suffix="+" label="Years of Excellence" />
-              <StatCounter end={2000} suffix="+" label="Clients Served" />
-              <StatCounter end={98} suffix="%" label="Client Satisfaction" />
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>
