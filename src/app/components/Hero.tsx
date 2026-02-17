@@ -71,7 +71,7 @@ export function Hero() {
             >
               <span
                 className="tracking-[0.3em] text-[10px] font-medium uppercase"
-                style={{ color: 'var(--primary)' }}
+                style={{ color: 'var(--primary)', fontFamily: '"Alegreya Sans", sans-serif' }}
               >
                 Elite Protocol — Institute of Etiquette, Image & Presence
               </span>

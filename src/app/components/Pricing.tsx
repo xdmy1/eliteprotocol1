@@ -120,7 +120,7 @@ function PricingCard({ plan, index }: { plan: typeof pricingPlans[0]; index: num
         {/* Header */}
         <div className="mb-12 pb-10 border-b" style={{ borderColor: 'var(--border)' }}>
           <h3
-            className="text-2xl mb-2 font-light"
+            className="text-2xl mb-2 font-medium"
             style={{ fontFamily: 'Cormorant, serif', color: 'var(--text-heading)' }}
           >
             {plan.name}
