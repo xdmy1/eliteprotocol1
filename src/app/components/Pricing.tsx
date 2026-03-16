@@ -3,60 +3,10 @@ import { motion, useInView } from 'motion/react';
 import { useCountUp } from '../hooks/useCountUp';
 import { GoldLine } from './animations/GoldLine';
 import { SectionReveal } from './animations/SectionReveal';
+import { useTranslation } from '../i18n/LanguageContext';
 
-const pricingPlans = [
-  {
-    name: 'Foundation',
-    tagline: 'Essential Refinement',
-    price: 250,
-    period: 'per session',
-    description: 'Ideal for individuals beginning their journey toward refined presence.',
-    features: [
-      '2-hour private consultation',
-      'Personal etiquette assessment',
-      'Basic image consultation',
-      'Dining etiquette fundamentals',
-      'Follow-up support via email'
-    ],
-    popular: false,
-  },
-  {
-    name: 'Elite',
-    tagline: 'Complete Transformation',
-    price: 850,
-    period: '4-week intensive',
-    description: 'Our signature program for comprehensive personal and professional development.',
-    features: [
-      '8 private coaching sessions',
-      'Complete image transformation',
-      'Executive presence training',
-      'Wardrobe consultation & styling',
-      'Personal branding strategy',
-      'Video analysis with feedback',
-      'Unlimited email support',
-      'Lifetime resource access'
-    ],
-    popular: true,
-  },
-  {
-    name: 'Platinum',
-    tagline: 'Bespoke Excellence',
-    price: 0,
-    period: 'tailored engagement',
-    description: 'Exclusive white-glove service for executives requiring personalized attention.',
-    features: [
-      'Unlimited private sessions',
-      'VIP concierge service',
-      'International protocol mastery',
-      'Event preparation & attendance',
-      '24/7 consultation access',
-      'Corporate team training',
-      'Personal stylist on-demand',
-      'Ongoing executive mentorship'
-    ],
-    popular: false,
-  }
-];
+const planPrices = [250, 850, 0];
+const planPopular = [false, true, false];
 
 function PriceDisplay({ price }: { price: number }) {
   const { ref, formatted } = useCountUp({
@@ -67,16 +17,27 @@ function PriceDisplay({ price }: { price: number }) {
 
   return (
     <div ref={ref} className="flex items-baseline gap-1">
-      <span className="text-5xl font-light" style={{ fontFamily: 'Cormorant, serif', color: 'var(--text-heading)' }}>
+      <span className="text-5xl font-light" style={{ fontFamily: 'Cinzel, serif', color: 'var(--text-heading)' }}>
         {formatted}
       </span>
     </div>
   );
 }
 
-function PricingCard({ plan, index }: { plan: typeof pricingPlans[0]; index: number }) {
+interface PlanCardData {
+  name: string;
+  tagline: string;
+  price: number;
+  period: string;
+  description: string;
+  features: string[];
+  popular: boolean;
+}
+
+function PricingCard({ plan, index }: { plan: PlanCardData; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-60px' });
+  const { t } = useTranslation();
 
   return (
     <motion.div
@@ -109,10 +70,10 @@ function PricingCard({ plan, index }: { plan: typeof pricingPlans[0]; index: num
           className="text-center py-3 text-[9px] tracking-[0.25em] font-medium"
           style={{
             background: 'linear-gradient(to right, #B89A5D, #D3B67F)',
-            color: '#0A1432',
+            color: '#222636',
           }}
         >
-          RECOMMENDED
+          {t('pricing.recommended')}
         </div>
       )}
 
@@ -121,13 +82,13 @@ function PricingCard({ plan, index }: { plan: typeof pricingPlans[0]; index: num
         <div className="mb-12 pb-10 border-b" style={{ borderColor: 'var(--border)' }}>
           <h3
             className="text-2xl mb-2 font-bold"
-            style={{ fontFamily: 'Cormorant, serif', color: 'var(--text-heading)' }}
+            style={{ fontFamily: 'Cinzel, serif', color: 'var(--text-heading)' }}
           >
             {plan.name}
           </h3>
           <p
             className="text-[9px] tracking-[0.25em] mb-6 uppercase font-medium"
-            style={{ color: 'var(--primary)' }}
+            style={{ color: '#E0C9A0' }}
           >
             {plan.tagline}
           </p>
@@ -140,9 +101,9 @@ function PricingCard({ plan, index }: { plan: typeof pricingPlans[0]; index: num
               <div className="flex items-baseline gap-1">
                 <span
                   className="text-5xl font-light"
-                  style={{ fontFamily: 'Cormorant, serif', color: 'var(--text-heading)' }}
+                  style={{ fontFamily: 'Cinzel, serif', color: 'var(--text-heading)' }}
                 >
-                  Custom
+                  {t('pricing.customPrice')}
                 </span>
               </div>
             )}
@@ -170,7 +131,7 @@ function PricingCard({ plan, index }: { plan: typeof pricingPlans[0]; index: num
               className="flex items-start gap-3 text-xs leading-relaxed font-light"
               style={{ color: 'var(--text-body)' }}
             >
-              <span className="mt-1.5" style={{ color: 'var(--primary)' }}>&mdash;</span>
+              <span className="mt-1.5" style={{ color: '#E0C9A0' }}>&mdash;</span>
               <span>{feature}</span>
             </li>
           ))}
@@ -186,7 +147,7 @@ function PricingCard({ plan, index }: { plan: typeof pricingPlans[0]; index: num
             plan.popular
               ? {
                   backgroundColor: 'var(--primary)',
-                  color: '#0A1432',
+                  color: '#222636',
                 }
               : {
                   backgroundColor: 'transparent',
@@ -195,7 +156,7 @@ function PricingCard({ plan, index }: { plan: typeof pricingPlans[0]; index: num
                 }
           }
         >
-          {plan.price === 0 ? 'CONTACT US' : 'GET STARTED'}
+          {plan.price === 0 ? t('pricing.ctaContactUs') : t('pricing.ctaGetStarted')}
         </motion.button>
       </div>
     </motion.div>
@@ -203,6 +164,16 @@ function PricingCard({ plan, index }: { plan: typeof pricingPlans[0]; index: num
 }
 
 export function Pricing() {
+  const { t, tRaw } = useTranslation();
+
+  const plans: PlanCardData[] = (tRaw('pricing.plans') as { name: string; tagline: string; period: string; description: string; features: string[] }[]).map(
+    (plan, i) => ({
+      ...plan,
+      price: planPrices[i],
+      popular: planPopular[i],
+    }),
+  );
+
   return (
     <section
       id="pricing"
@@ -215,9 +186,9 @@ export function Pricing() {
           <div className="mb-6 inline-block">
             <span
               className="tracking-[0.3em] text-[10px] font-medium uppercase"
-              style={{ color: 'var(--primary)' }}
+              style={{ color: '#E0C9A0' }}
             >
-              Investment
+              {t('pricing.tag')}
             </span>
           </div>
           <div className="flex justify-center mb-6">
@@ -225,21 +196,21 @@ export function Pricing() {
           </div>
           <h2
             className="text-[clamp(2.5rem,5vw,4.5rem)] mb-6 font-light leading-[1.15] tracking-[-0.01em]"
-            style={{ fontFamily: 'Cormorant, serif', color: 'var(--text-heading)' }}
+            style={{ fontFamily: 'Cinzel, serif', color: 'var(--text-heading)' }}
           >
-            Select Your Program
+            {t('pricing.heading')}
           </h2>
           <p
             className="text-base max-w-2xl mx-auto font-light leading-relaxed"
             style={{ color: 'var(--text-body)' }}
           >
-            Choose the level of engagement that aligns with your goals.
+            {t('pricing.description')}
           </p>
         </SectionReveal>
 
         {/* Pricing Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-[1400px] mx-auto">
-          {pricingPlans.map((plan, index) => (
+          {plans.map((plan, index) => (
             <PricingCard key={index} plan={plan} index={index} />
           ))}
         </div>
@@ -247,7 +218,7 @@ export function Pricing() {
         {/* Payment Info */}
         <SectionReveal className="mt-20 max-w-4xl mx-auto text-center" delay={0.3}>
           <p className="text-xs leading-loose font-light" style={{ color: 'var(--text-faint)' }}>
-            Flexible payment plans available  &bull;  Corporate invoicing accepted  &bull;  30-day satisfaction guarantee
+            {t('pricing.paymentInfo')}
           </p>
         </SectionReveal>
 
@@ -262,22 +233,22 @@ export function Pricing() {
           >
             <p
               className="text-lg italic mb-8 leading-relaxed font-light"
-              style={{ fontFamily: 'Cormorant, serif', color: 'var(--text-body)' }}
+              style={{ fontFamily: 'Cinzel, serif', color: 'var(--text-body)' }}
             >
-              "The Elite Protocol program transformed not just my appearance, but my entire approach to professional interactions. An invaluable investment in my career."
+              {t('pricing.testimonialQuote')}
             </p>
             <div>
               <p
                 className="text-[11px] tracking-[0.15em] font-medium"
                 style={{ color: 'var(--text-heading)' }}
               >
-                VICTORIA CHEN
+                {t('pricing.testimonialAuthor')}
               </p>
               <p
                 className="text-[10px] tracking-wider mt-2 font-light"
                 style={{ color: 'var(--text-caption)' }}
               >
-                Chief Executive Officer, Fortune 500 Company
+                {t('pricing.testimonialRole')}
               </p>
             </div>
           </div>

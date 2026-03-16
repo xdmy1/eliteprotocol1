@@ -1,48 +1,21 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useInView } from 'motion/react';
 import { GoldLine } from './animations/GoldLine';
 import { SectionReveal } from './animations/SectionReveal';
+import { useTranslation } from '../i18n/LanguageContext';
+import { ServiceModal } from './ServiceModal';
 
-const services = [
-  {
-    number: '01',
-    title: 'Personal Etiquette',
-    description: 'Master the subtleties of refined behavior and social graces that distinguish excellence.',
-    features: ['Dining etiquette', 'Social protocols', 'Business manners']
-  },
-  {
-    number: '02',
-    title: 'Image Consultation',
-    description: 'Develop a powerful personal brand through strategic style and authentic presence.',
-    features: ['Wardrobe analysis', 'Personal styling', 'Brand development']
-  },
-  {
-    number: '03',
-    title: 'Executive Presence',
-    description: 'Command authority with refined communication and strategic leadership gravitas.',
-    features: ['Communication skills', 'Body language', 'Leadership presence']
-  },
-  {
-    number: '04',
-    title: 'Corporate Training',
-    description: 'Transform your organization with comprehensive excellence and etiquette programs.',
-    features: ['Team workshops', 'Custom curriculum', 'Ongoing support']
-  },
-  {
-    number: '05',
-    title: 'International Protocol',
-    description: 'Navigate global business with cultural intelligence and diplomatic finesse.',
-    features: ['Cultural awareness', 'International customs', 'Global etiquette']
-  },
-  {
-    number: '06',
-    title: 'Special Occasions',
-    description: 'Specialized preparation for life\'s most significant and memorable moments.',
-    features: ['Event coaching', 'Speech preparation', 'Confidence building']
-  }
-];
+const serviceNumbers = ['01', '02', '03'];
 
-function ServiceCard({ service, index }: { service: typeof services[0]; index: number }) {
+interface ServiceCardData {
+  number: string;
+  title: string;
+  description: string;
+  features: string[];
+  learnMore: string;
+}
+
+function ServiceCard({ service, index, onLearnMore }: { service: ServiceCardData; index: number; onLearnMore: () => void }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-60px' });
 
@@ -77,7 +50,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       {/* Title */}
       <h3
         className="text-2xl font-bold mb-4 transition-colors duration-500"
-        style={{ fontFamily: 'Cormorant, serif', color: 'var(--text-heading)' }}
+        style={{ fontFamily: 'Cinzel, serif', color: '#3d4a8c' }}
       >
         {service.title}
       </h3>
@@ -102,17 +75,30 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
 
       {/* Link */}
       <button
-        onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+        onClick={onLearnMore}
         className="text-[10px] tracking-[0.2em] font-light transition-colors duration-300"
         style={{ color: 'var(--text-caption)' }}
       >
-        LEARN MORE &rarr;
+        {service.learnMore} &rarr;
       </button>
     </motion.div>
   );
 }
 
 export function Services() {
+  const { t, tRaw } = useTranslation();
+  const [selectedService, setSelectedService] = useState<number | null>(null);
+
+  const cards: ServiceCardData[] = (tRaw('services.cards') as { title: string; description: string; features: string[] }[]).map(
+    (card, i) => ({
+      number: serviceNumbers[i],
+      title: card.title,
+      description: card.description,
+      features: card.features,
+      learnMore: t('services.learnMore'),
+    }),
+  );
+
   return (
     <section
       id="services"
@@ -129,28 +115,28 @@ export function Services() {
               className="tracking-[0.3em] text-[10px] font-medium uppercase"
               style={{ color: 'var(--primary)' }}
             >
-              Our Services
+              {t('services.tag')}
             </span>
           </div>
           <GoldLine className="mb-6" width="3rem" />
           <h2
             className="text-[clamp(2.5rem,5vw,4.5rem)] mb-6 font-light leading-[1.15] tracking-[-0.01em]"
-            style={{ fontFamily: 'Cormorant, serif', color: 'var(--text-heading)' }}
+            style={{ fontFamily: 'Cinzel, serif', color: 'var(--text-heading)' }}
           >
-            Comprehensive Excellence
+            {t('services.heading')}
           </h2>
           <p
             className="text-base max-w-2xl font-light leading-relaxed"
             style={{ color: 'var(--text-body)' }}
           >
-            Each program is meticulously designed to address specific aspects of personal and professional refinement.
+            {t('services.description')}
           </p>
         </SectionReveal>
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <ServiceCard key={index} service={service} index={index} />
+          {cards.map((service, index) => (
+            <ServiceCard key={index} service={service} index={index} onLearnMore={() => setSelectedService(index)} />
           ))}
         </div>
 
@@ -158,7 +144,7 @@ export function Services() {
         <SectionReveal className="mt-24 text-center pt-20 border-t" delay={0.2}>
           <div style={{ borderColor: 'var(--border)' }}>
             <p className="text-sm mb-8 font-light" style={{ color: 'var(--text-body)' }}>
-              Not sure which program suits you best?
+              {t('services.bottomCtaText')}
             </p>
             <motion.button
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
@@ -170,11 +156,17 @@ export function Services() {
                 borderColor: 'var(--border)',
               }}
             >
-              SCHEDULE A DISCOVERY CALL
+              {t('services.bottomCtaButton')}
             </motion.button>
           </div>
         </SectionReveal>
       </div>
+
+      <ServiceModal
+        open={selectedService !== null}
+        onClose={() => setSelectedService(null)}
+        service={selectedService !== null ? cards[selectedService] : null}
+      />
     </section>
   );
 }

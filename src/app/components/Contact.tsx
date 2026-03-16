@@ -2,8 +2,11 @@ import { useState, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'motion/react';
 import { GoldLine } from './animations/GoldLine';
 import { SectionReveal } from './animations/SectionReveal';
+import { useTranslation } from '../i18n/LanguageContext';
 
 export function Contact() {
+  const { t, tRaw } = useTranslation();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -38,11 +41,13 @@ export function Contact() {
     color: 'var(--text-heading)',
   };
 
+  const serviceOptions = tRaw('contact.form.serviceOptions') as { value: string; label: string }[];
+
   return (
     <section
       id="contact"
       className="py-32 relative overflow-hidden"
-      style={{ backgroundColor: '#162044' }}
+      style={{ backgroundColor: 'var(--background-contact)' }}
     >
       <div className="max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
         {/* Section Header */}
@@ -50,9 +55,9 @@ export function Contact() {
           <div className="mb-6 inline-block">
             <span
               className="tracking-[0.3em] text-[10px] font-medium uppercase"
-              style={{ color: 'var(--primary)' }}
+              style={{ color: '#E0C9A0' }}
             >
-              Get in Touch
+              {t('contact.tag')}
             </span>
           </div>
           <div className="flex justify-center mb-6">
@@ -60,15 +65,15 @@ export function Contact() {
           </div>
           <h2
             className="text-[clamp(2.5rem,5vw,4.5rem)] mb-6 font-light leading-[1.15] tracking-[-0.01em]"
-            style={{ fontFamily: 'Cormorant, serif', color: 'var(--text-heading)' }}
+            style={{ fontFamily: 'Cinzel, serif', color: 'var(--text-heading)' }}
           >
-            Begin Your Transformation
+            {t('contact.heading')}
           </h2>
           <p
             className="text-base max-w-2xl mx-auto font-light leading-relaxed"
             style={{ color: 'var(--text-body)' }}
           >
-            Schedule a confidential consultation to discuss your goals.
+            {t('contact.description')}
           </p>
         </SectionReveal>
 
@@ -86,7 +91,7 @@ export function Contact() {
                 className="mb-4 text-[11px] tracking-[0.2em] font-medium"
                 style={{ color: 'var(--text-heading)' }}
               >
-                EMAIL
+                {t('contact.emailLabel')}
               </h3>
               <a
                 href="mailto:contact@eliteprotocol.com"
@@ -102,7 +107,7 @@ export function Contact() {
                 className="mb-4 text-[11px] tracking-[0.2em] font-medium"
                 style={{ color: 'var(--text-heading)' }}
               >
-                PHONE
+                {t('contact.phoneLabel')}
               </h3>
               <a
                 href="tel:+15551234567"
@@ -112,7 +117,7 @@ export function Contact() {
                 +1 (555) 123-4567
               </a>
               <p className="text-xs font-light" style={{ color: 'var(--text-faint)' }}>
-                Monday &ndash; Friday, 9:00 AM &ndash; 6:00 PM EST
+                {t('contact.phoneNote')}
               </p>
             </div>
 
@@ -121,14 +126,14 @@ export function Contact() {
                 className="mb-4 text-[11px] tracking-[0.2em] font-medium"
                 style={{ color: 'var(--text-heading)' }}
               >
-                OFFICE
+                {t('contact.officeLabel')}
               </h3>
               <p className="text-sm font-light leading-relaxed" style={{ color: 'var(--text-body)' }}>
                 432 Park Avenue<br />
                 New York, NY 10022
               </p>
               <p className="text-xs mt-3 font-light" style={{ color: 'var(--text-faint)' }}>
-                By appointment only
+                {t('contact.appointmentOnly')}
               </p>
             </div>
 
@@ -137,20 +142,20 @@ export function Contact() {
                 className="mb-6 text-[11px] tracking-[0.2em] font-medium"
                 style={{ color: 'var(--text-heading)' }}
               >
-                BUSINESS HOURS
+                {t('contact.businessHoursLabel')}
               </h3>
               <div className="space-y-3 text-xs font-light">
                 <div className="flex justify-between" style={{ color: 'var(--text-body)' }}>
-                  <span>Monday &ndash; Friday</span>
-                  <span style={{ color: 'var(--primary-bright)' }}>9:00 AM &ndash; 6:00 PM</span>
+                  <span>{t('contact.hours.monFri')}</span>
+                  <span style={{ color: '#E0C9A0' }}>{t('contact.hours.monFriTime')}</span>
                 </div>
                 <div className="flex justify-between" style={{ color: 'var(--text-body)' }}>
-                  <span>Saturday</span>
-                  <span style={{ color: 'var(--primary-bright)' }}>10:00 AM &ndash; 4:00 PM</span>
+                  <span>{t('contact.hours.sat')}</span>
+                  <span style={{ color: '#E0C9A0' }}>{t('contact.hours.satTime')}</span>
                 </div>
                 <div className="flex justify-between" style={{ color: 'var(--text-body)' }}>
-                  <span>Sunday</span>
-                  <span style={{ color: 'var(--text-faint)' }}>Closed</span>
+                  <span>{t('contact.hours.sun')}</span>
+                  <span style={{ color: 'var(--text-faint)' }}>{t('contact.hours.closed')}</span>
                 </div>
               </div>
             </div>
@@ -188,12 +193,12 @@ export function Contact() {
                   </div>
                   <h4
                     className="text-2xl mb-6 font-light"
-                    style={{ fontFamily: 'Cormorant, serif', color: 'var(--primary-bright)' }}
+                    style={{ fontFamily: 'Cinzel, serif', color: '#E0C9A0' }}
                   >
-                    Thank You
+                    {t('contact.successHeading')}
                   </h4>
                   <p className="text-sm font-light leading-relaxed" style={{ color: 'var(--text-body)' }}>
-                    Your inquiry has been received. A member of our team will contact you within 24 hours to schedule your consultation.
+                    {t('contact.successMessage')}
                   </p>
                 </motion.div>
               ) : (
@@ -217,7 +222,7 @@ export function Contact() {
                         className="block text-[10px] mb-3 tracking-[0.15em] font-medium uppercase"
                         style={{ color: 'var(--text-caption)' }}
                       >
-                        Full Name *
+                        {t('contact.form.nameLabel')}
                       </label>
                       <input
                         type="text"
@@ -228,7 +233,7 @@ export function Contact() {
                         onChange={handleChange}
                         className="w-full border text-sm px-5 py-4 focus:outline-none transition-colors duration-300 font-light"
                         style={inputStyle}
-                        placeholder="John Doe"
+                        placeholder={t('contact.form.namePlaceholder')}
                       />
                     </div>
 
@@ -238,7 +243,7 @@ export function Contact() {
                         className="block text-[10px] mb-3 tracking-[0.15em] font-medium uppercase"
                         style={{ color: 'var(--text-caption)' }}
                       >
-                        Email Address *
+                        {t('contact.form.emailLabel')}
                       </label>
                       <input
                         type="email"
@@ -249,7 +254,7 @@ export function Contact() {
                         onChange={handleChange}
                         className="w-full border text-sm px-5 py-4 focus:outline-none transition-colors duration-300 font-light"
                         style={inputStyle}
-                        placeholder="john@example.com"
+                        placeholder={t('contact.form.emailPlaceholder')}
                       />
                     </div>
                   </div>
@@ -261,7 +266,7 @@ export function Contact() {
                         className="block text-[10px] mb-3 tracking-[0.15em] font-medium uppercase"
                         style={{ color: 'var(--text-caption)' }}
                       >
-                        Phone Number
+                        {t('contact.form.phoneLabel')}
                       </label>
                       <input
                         type="tel"
@@ -271,7 +276,7 @@ export function Contact() {
                         onChange={handleChange}
                         className="w-full border text-sm px-5 py-4 focus:outline-none transition-colors duration-300 font-light"
                         style={inputStyle}
-                        placeholder="+1 (555) 123-4567"
+                        placeholder={t('contact.form.phonePlaceholder')}
                       />
                     </div>
 
@@ -281,7 +286,7 @@ export function Contact() {
                         className="block text-[10px] mb-3 tracking-[0.15em] font-medium uppercase"
                         style={{ color: 'var(--text-caption)' }}
                       >
-                        Service Interest *
+                        {t('contact.form.serviceLabel')}
                       </label>
                       <select
                         id="service"
@@ -292,13 +297,12 @@ export function Contact() {
                         className="w-full border text-sm px-5 py-4 focus:outline-none transition-colors duration-300 font-light"
                         style={inputStyle}
                       >
-                        <option value="">Select a service</option>
-                        <option value="personal-etiquette">Personal Etiquette</option>
-                        <option value="image-consultation">Image Consultation</option>
-                        <option value="executive-presence">Executive Presence</option>
-                        <option value="corporate-training">Corporate Training</option>
-                        <option value="international-protocol">International Protocol</option>
-                        <option value="special-occasions">Special Occasions</option>
+                        <option value="">{t('contact.form.servicePlaceholder')}</option>
+                        {serviceOptions.map((opt) => (
+                          <option key={opt.value} value={opt.value}>
+                            {opt.label}
+                          </option>
+                        ))}
                       </select>
                     </div>
                   </div>
@@ -309,7 +313,7 @@ export function Contact() {
                       className="block text-[10px] mb-3 tracking-[0.15em] font-medium uppercase"
                       style={{ color: 'var(--text-caption)' }}
                     >
-                      Your Message *
+                      {t('contact.form.messageLabel')}
                     </label>
                     <textarea
                       id="message"
@@ -320,7 +324,7 @@ export function Contact() {
                       rows={6}
                       className="w-full border text-sm px-5 py-4 focus:outline-none transition-colors duration-300 resize-none font-light"
                       style={inputStyle}
-                      placeholder="Please share your goals and any specific areas you'd like to address..."
+                      placeholder={t('contact.form.messagePlaceholder')}
                     />
                   </div>
 
@@ -337,7 +341,7 @@ export function Contact() {
                       className="text-[10px] leading-relaxed font-light"
                       style={{ color: 'var(--text-caption)' }}
                     >
-                      I consent to Elite Protocol contacting me regarding my inquiry. All consultations are conducted with complete confidentiality and discretion.
+                      {t('contact.form.privacyConsent')}
                     </label>
                   </div>
 
@@ -351,7 +355,7 @@ export function Contact() {
                       color: 'var(--primary-foreground)',
                     }}
                   >
-                    SUBMIT INQUIRY
+                    {t('contact.form.submit')}
                   </motion.button>
                 </motion.form>
               )}
@@ -360,7 +364,7 @@ export function Contact() {
             {/* Confidentiality Note */}
             <div className="mt-8 text-center">
               <p className="text-[10px] font-light leading-relaxed" style={{ color: 'var(--text-faint)' }}>
-                <span style={{ color: 'var(--primary)' }}>Complete Confidentiality</span> &mdash; All inquiries are handled with the utmost discretion
+                <span style={{ color: '#E0C9A0' }}>{t('contact.confidentiality')}</span> &mdash; {t('contact.confidentialityNote')}
               </p>
             </div>
           </motion.div>

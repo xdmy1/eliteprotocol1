@@ -3,55 +3,55 @@
   --font-size: 16px;
 
   /* Brand colors */
-  --blue: #336AEB;
-  --blue-light: #5A88F0;
-  --blue-dark: #1B3A8C;
+  --blue: #3d4a8c;
+  --blue-light: #5a6aaa;
+  --blue-dark: #232952;
   --gold: #D3B67F;
   --gold-bright: #E0C9A0;
   --gold-deep: #B89A5D;
 
-  /* Section backgrounds — dark blues (default for dark sections) */
-  --background: #0E1B3D;
-  --background-hero-from: #0A1432;
-  --background-hero-to: #142452;
-  --background-pricing: #0C1836;
-  --background-contact: #162044;
-  --background-footer: #060E24;
+  /* Section backgrounds */
+  --background: #232952;
+  --background-hero-from: #222636;
+  --background-hero-to: #232952;
+  --background-pricing: #222636;
+  --background-contact: #232952;
+  --background-footer: #1c1f2d;
 
-  /* Text — light on dark blue */
-  --foreground: #E8ECF5;
+  /* Text — light on dark */
+  --foreground: #F3FAFC;
   --text-heading: #FFFFFF;
-  --text-body: #B0BDD6;
-  --text-caption: #7E90B5;
-  --text-faint: #5A6D94;
+  --text-body: #F3FAFC;
+  --text-caption: #b8d4da;
+  --text-faint: #7a9aa3;
 
-  /* Cards & surfaces — slightly lighter blue */
-  --card: #152551;
-  --card-foreground: #E8ECF5;
-  --popover: #152551;
-  --popover-foreground: #E8ECF5;
+  /* Cards & surfaces — slightly lighter */
+  --card: #2c3162;
+  --card-foreground: #F3FAFC;
+  --popover: #2c3162;
+  --popover-foreground: #F3FAFC;
 
   /* Navigation */
-  --nav-bg: rgba(10, 20, 50, 0.88);
-  --nav-text: #8A9DC2;
+  --nav-bg: rgba(34, 38, 54, 0.9);
+  --nav-text: #8aabb5;
   --nav-text-active: #FFFFFF;
 
   /* Primary (gold — luxury accent) */
   --primary: #D3B67F;
   --primary-bright: #E0C9A0;
-  --primary-foreground: #0A1432;
+  --primary-foreground: #222636;
 
   /* Secondary */
-  --secondary: #1A2D5E;
-  --secondary-foreground: #E8ECF5;
+  --secondary: #2c3162;
+  --secondary-foreground: #F3FAFC;
 
   /* Muted */
-  --muted: #1A2D5E;
+  --muted: #2c3162;
   --muted-foreground: #7E90B5;
 
   /* Accent */
-  --accent: #1A2D5E;
-  --accent-foreground: #E8ECF5;
+  --accent: #2c3162;
+  --accent-foreground: #F3FAFC;
 
   /* Destructive */
   --destructive: #d4183d;
@@ -61,8 +61,8 @@
   --border: rgba(211, 182, 127, 0.15);
   --border-subtle: rgba(211, 182, 127, 0.08);
   --input: transparent;
-  --input-background: #1A2D5E;
-  --switch-background: #1A2D5E;
+  --input-background: #323868;
+  --switch-background: #323868;
 
   /* Logo — invert to white on dark blue bg */
   --logo-filter: brightness(0) invert(1);
@@ -71,7 +71,7 @@
   --font-weight-medium: 500;
   --font-weight-normal: 400;
   --ring: #D3B67F;
-  --chart-1: #336AEB;
+  --chart-1: #3d4a8c;
   --chart-2: #D3B67F;
   --chart-3: #7E90B5;
   --chart-4: #FFFFFF;
@@ -79,17 +79,17 @@
   --radius: 0.625rem;
 
   /* Sidebar */
-  --sidebar: #0C1836;
-  --sidebar-foreground: #E8ECF5;
+  --sidebar: #222636;
+  --sidebar-foreground: #F3FAFC;
   --sidebar-primary: #D3B67F;
-  --sidebar-primary-foreground: #0A1432;
-  --sidebar-accent: #1A2D5E;
-  --sidebar-accent-foreground: #E8ECF5;
+  --sidebar-primary-foreground: #222636;
+  --sidebar-accent: #2c3162;
+  --sidebar-accent-foreground: #F3FAFC;
   --sidebar-border: rgba(211, 182, 127, 0.12);
   --sidebar-ring: #D3B67F;
 
   /* Scrollbar */
-  --scrollbar-track: #0E1B3D;
+  --scrollbar-track: #232952;
   --scrollbar-thumb: rgba(211, 182, 127, 0.2);
   --scrollbar-thumb-hover: rgba(211, 182, 127, 0.35);
 
@@ -138,7 +138,7 @@
   --primary-bright: #6B5830;
   --gold: #7A6535;
   --gold-bright: #6B5830;
-  --blue: #1B3A8C;
+  --blue: #232952;
   --text-heading: #2C1E0A;
   --text-body: #4A3A24;
   --text-caption: #6B5A42;
@@ -258,17 +258,17 @@
   }
 }
 
-/* Base satin — very dark navy with barely-there movement */
+/* Base satin — deep dark with barely-there movement */
 .hero-satin-bg {
   background: linear-gradient(
     160deg,
-    #081230 0%,
-    #0B1738 18%,
-    #0E1C42 35%,
-    #0B1738 52%,
-    #091434 68%,
-    #0C1940 85%,
-    #081230 100%
+    #1e2136 0%,
+    #20243e 18%,
+    #232952 35%,
+    #20243e 52%,
+    #1f2238 68%,
+    #22274a 85%,
+    #1e2136 100%
   );
   background-size: 200% 200%;
   animation: satin-drift 30s ease-in-out infinite;
@@ -278,8 +278,8 @@
 .hero-satin-fold-1 {
   background: radial-gradient(
     ellipse 70% 50% at 25% 35%,
-    rgba(20, 40, 90, 0.6) 0%,
-    rgba(15, 30, 70, 0.2) 40%,
+    rgba(35, 41, 82, 0.6) 0%,
+    rgba(34, 38, 54, 0.2) 40%,
     transparent 70%
   );
   animation: satin-breathe-1 20s ease-in-out infinite;
@@ -289,8 +289,8 @@
 .hero-satin-fold-2 {
   background: radial-gradient(
     ellipse 65% 55% at 75% 65%,
-    rgba(18, 36, 82, 0.5) 0%,
-    rgba(12, 25, 60, 0.15) 45%,
+    rgba(35, 41, 82, 0.5) 0%,
+    rgba(34, 38, 54, 0.15) 45%,
     transparent 70%
   );
   animation: satin-breathe-2 25s ease-in-out infinite;
@@ -300,8 +300,8 @@
 .hero-satin-sheen {
   background: radial-gradient(
     ellipse 40% 35% at 55% 40%,
-    rgba(51, 106, 235, 0.07) 0%,
-    rgba(30, 65, 150, 0.03) 50%,
+    rgba(61, 74, 140, 0.07) 0%,
+    rgba(44, 49, 98, 0.03) 50%,
     transparent 70%
   );
   animation: satin-breathe-3 18s ease-in-out infinite 4s;
@@ -315,6 +315,26 @@
     transparent 60%
   );
   animation: gold-whisper 14s ease-in-out infinite;
+}
+
+/* Hero image — thin luxury border breathe */
+@keyframes border-breathe {
+  0%, 100% {
+    border-color: rgba(224, 201, 160, 0.18);
+  }
+  50% {
+    border-color: rgba(224, 201, 160, 0.45);
+  }
+}
+
+.hero-img-border {
+  border: 1px solid rgba(224, 201, 160, 0.25);
+  animation: border-breathe 5s ease-in-out infinite;
+}
+
+.hero-img-border-outer {
+  border: 1px solid rgba(224, 201, 160, 0.12);
+  animation: border-breathe 5s ease-in-out infinite 2.5s;
 }
 
 @layer base {

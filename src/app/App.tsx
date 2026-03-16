@@ -4,20 +4,53 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Hero } from './components/Hero';
 import { Services } from './components/Services';
 import { Pricing } from './components/Pricing';
+import { Reviews } from './components/Reviews';
 import { About } from './components/About';
 import { Contact } from './components/Contact';
+import { useTranslation, useLocale } from './i18n/LanguageContext';
+import type { Locale } from './i18n/translations';
 import logoFull from '../assets/b220aa233b66a602732d8b14f5aaaaf1f6f9c372.png';
 
-const navLinks = [
-  { id: 'home', label: 'HOME' },
-  { id: 'services', label: 'SERVICES' },
-  { id: 'pricing', label: 'INVESTMENT' },
-  { id: 'about', label: 'PHILOSOPHY' },
-];
+const navLinkIds = ['home', 'about', 'services', 'pricing'] as const;
+const navLinkKeys: Record<typeof navLinkIds[number], string> = {
+  home: 'nav.home',
+  about: 'nav.philosophy',
+  services: 'nav.services',
+  pricing: 'nav.investment',
+};
+
+const locales: Locale[] = ['ro', 'en', 'ru'];
+
+function LanguageSwitcher({ className = '' }: { className?: string }) {
+  const { locale, setLocale } = useLocale();
+
+  return (
+    <div className={`flex items-center gap-2 text-[10px] tracking-[0.2em] ${className}`}>
+      {locales.map((l, i) => (
+        <span key={l} className="flex items-center gap-2">
+          {i > 0 && (
+            <span style={{ color: 'var(--nav-text)', opacity: 0.3 }}>|</span>
+          )}
+          <button
+            onClick={() => setLocale(l)}
+            className="transition-colors duration-200 uppercase"
+            style={{
+              color: locale === l ? 'var(--primary)' : 'var(--nav-text)',
+              fontWeight: locale === l ? 500 : 300,
+            }}
+          >
+            {l.toUpperCase()}
+          </button>
+        </span>
+      ))}
+    </div>
+  );
+}
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const { t } = useTranslation();
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -59,17 +92,17 @@ function App() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-16 text-[10px] tracking-[0.2em] font-normal">
-              {navLinks.map((link) => (
+              {navLinkIds.map((id) => (
                 <motion.button
-                  key={link.id}
-                  onClick={() => scrollToSection(link.id)}
+                  key={id}
+                  onClick={() => scrollToSection(id)}
                   className="relative py-1"
-                  style={{ color: activeSection === link.id ? 'var(--primary)' : 'var(--nav-text)' }}
+                  style={{ color: activeSection === id ? 'var(--primary)' : 'var(--nav-text)' }}
                   whileHover={{ y: -1 }}
                   transition={{ duration: 0.2 }}
                 >
-                  {link.label}
-                  {activeSection === link.id && (
+                  {t(navLinkKeys[id])}
+                  {activeSection === id && (
                     <motion.div
                       layoutId="nav-underline"
                       className="absolute -bottom-1 left-0 right-0 h-px"
@@ -80,18 +113,20 @@ function App() {
                 </motion.button>
               ))}
 
+              <LanguageSwitcher />
+
               <motion.button
                 onClick={() => scrollToSection('contact')}
                 className="relative px-9 py-3.5 text-[10px] tracking-[0.2em] overflow-hidden"
                 style={{
                   backgroundColor: 'var(--primary)',
-                  color: '#0A1432',
+                  color: '#222636',
                 }}
                 whileHover={{ scale: 1.03, boxShadow: '0 0 25px rgba(211,182,127,0.3)' }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
               >
-                CONTACT
+                {t('nav.contact')}
               </motion.button>
             </div>
 
@@ -138,40 +173,50 @@ function App() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               className="fixed inset-0 top-20 md:hidden"
-              style={{ backgroundColor: 'rgba(6, 14, 36, 0.97)' }}
+              style={{ backgroundColor: 'rgba(28, 31, 45, 0.97)' }}
             >
               <div className="flex flex-col items-center justify-center h-full px-6 -mt-10">
-                {navLinks.map((link, i) => (
+                {navLinkIds.map((id, i) => (
                   <motion.button
-                    key={link.id}
+                    key={id}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.3, delay: i * 0.06 }}
-                    onClick={() => scrollToSection(link.id)}
+                    onClick={() => scrollToSection(id)}
                     className="block py-5 text-[13px] tracking-[0.3em] font-light"
                     style={{
-                      color: activeSection === link.id ? 'var(--primary)' : '#8A9DC2',
+                      color: activeSection === id ? 'var(--primary)' : '#8aabb5',
                     }}
                   >
-                    {link.label}
+                    {t(navLinkKeys[id])}
                   </motion.button>
                 ))}
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3, delay: navLinkIds.length * 0.06 }}
+                  className="mt-8"
+                >
+                  <LanguageSwitcher />
+                </motion.div>
 
                 <motion.button
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3, delay: navLinks.length * 0.06 }}
+                  transition={{ duration: 0.3, delay: (navLinkIds.length + 1) * 0.06 }}
                   onClick={() => scrollToSection('contact')}
                   whileTap={{ scale: 0.97 }}
                   className="mt-10 px-14 py-4 text-[11px] tracking-[0.25em]"
                   style={{
                     backgroundColor: 'var(--primary)',
-                    color: '#0A1432',
+                    color: '#222636',
                   }}
                 >
-                  CONTACT
+                  {t('nav.contact')}
                 </motion.button>
 
                 <motion.div
@@ -181,7 +226,7 @@ function App() {
                   className="absolute bottom-12 left-0 right-0 text-center"
                 >
                   <p className="text-[9px] tracking-[0.2em] font-light" style={{ color: '#4E5874' }}>
-                    ELITE PROTOCOL
+                    {t('footer.mobileMenuLabel')}
                   </p>
                 </motion.div>
               </div>
@@ -195,6 +240,7 @@ function App() {
         <Hero />
         <Services />
         <Pricing />
+        <Reviews />
         <About />
         <Contact />
       </main>
@@ -225,36 +271,36 @@ function App() {
                   width: '260px',
                 }}
               />
-              <p className="text-[#A8B2CC] text-sm leading-relaxed mb-10 font-light">
-                Institute of Etiquette, Image & Presence
+              <p className="text-[#c8e4ea] text-sm leading-relaxed mb-10 font-light">
+                {t('footer.tagline')}
               </p>
-              <p className="text-[#7A86A8] text-xs leading-relaxed max-w-md font-light">
-                Elevating individuals through the mastery of etiquette, refined image, and commanding presence.
+              <p className="text-[#8aabb5] text-xs leading-relaxed max-w-md font-light">
+                {t('footer.description')}
               </p>
             </div>
             <div className="col-span-1 md:col-span-3">
-              <h4 className="text-[#D3B67F] mb-10 text-[10px] tracking-[0.2em] font-medium">NAVIGATE</h4>
+              <h4 className="text-[#E0C9A0] mb-10 text-[10px] tracking-[0.2em] font-medium">{t('footer.navigate')}</h4>
               <ul className="space-y-5 text-xs font-light">
-                <li><button onClick={() => scrollToSection('services')} className="text-[#7A86A8] hover:text-[#E8ECF5] transition-colors duration-300">Services</button></li>
-                <li><button onClick={() => scrollToSection('pricing')} className="text-[#7A86A8] hover:text-[#E8ECF5] transition-colors duration-300">Investment</button></li>
-                <li><button onClick={() => scrollToSection('about')} className="text-[#7A86A8] hover:text-[#E8ECF5] transition-colors duration-300">Philosophy</button></li>
-                <li><button onClick={() => scrollToSection('contact')} className="text-[#7A86A8] hover:text-[#E8ECF5] transition-colors duration-300">Contact</button></li>
+                <li><button onClick={() => scrollToSection('services')} className="text-[#8aabb5] hover:text-[#E0C9A0] transition-colors duration-300">{t('footer.navServices')}</button></li>
+                <li><button onClick={() => scrollToSection('pricing')} className="text-[#8aabb5] hover:text-[#E0C9A0] transition-colors duration-300">{t('footer.navInvestment')}</button></li>
+                <li><button onClick={() => scrollToSection('about')} className="text-[#8aabb5] hover:text-[#E0C9A0] transition-colors duration-300">{t('footer.navPhilosophy')}</button></li>
+                <li><button onClick={() => scrollToSection('contact')} className="text-[#8aabb5] hover:text-[#E0C9A0] transition-colors duration-300">{t('footer.navContact')}</button></li>
               </ul>
             </div>
             <div className="col-span-1 md:col-span-4">
-              <h4 className="text-[#D3B67F] mb-10 text-[10px] tracking-[0.2em] font-medium">CONNECT</h4>
-              <ul className="space-y-5 text-xs text-[#7A86A8] font-light">
+              <h4 className="text-[#E0C9A0] mb-10 text-[10px] tracking-[0.2em] font-medium">{t('footer.connect')}</h4>
+              <ul className="space-y-5 text-xs text-[#8aabb5] font-light">
                 <li>contact@eliteprotocol.com</li>
                 <li>+1 (555) 123-4567</li>
                 <li className="pt-4">432 Park Avenue<br/>New York, NY 10022</li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-[#D3B67F]/10 pt-10 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-[#4E5874] font-light">
-            <p>&copy; 2026 Elite Protocol. All rights reserved.</p>
+          <div className="border-t border-[#D3B67F]/10 pt-10 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-[#607880] font-light">
+            <p>{t('footer.copyright')}</p>
             <div className="flex gap-10 text-[10px]">
-              <button className="hover:text-[#7A86A8] transition-colors duration-300">Privacy</button>
-              <button className="hover:text-[#7A86A8] transition-colors duration-300">Terms</button>
+              <button className="hover:text-[#8aabb5] transition-colors duration-300">{t('footer.privacy')}</button>
+              <button className="hover:text-[#8aabb5] transition-colors duration-300">{t('footer.terms')}</button>
             </div>
           </div>
         </div>

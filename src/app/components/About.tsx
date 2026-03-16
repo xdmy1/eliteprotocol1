@@ -3,12 +3,13 @@ import { motion, useInView } from 'motion/react';
 import { useCountUp } from '../hooks/useCountUp';
 import { GoldLine } from './animations/GoldLine';
 import { SectionReveal } from './animations/SectionReveal';
+import { useTranslation } from '../i18n/LanguageContext';
 
-const stats = [
-  { value: 15, suffix: '', label: 'Years of Excellence' },
-  { value: 2000, suffix: '', label: 'Clients Transformed' },
-  { value: 98, suffix: '%', label: 'Satisfaction Rate' },
-  { value: 50, suffix: '+', label: 'Corporate Partners' }
+const statValues = [
+  { value: 15, suffix: '' },
+  { value: 2000, suffix: '' },
+  { value: 98, suffix: '%' },
+  { value: 50, suffix: '+' },
 ];
 
 function AboutStatCounter({ value, suffix, label }: { value: number; suffix: string; label: string }) {
@@ -18,7 +19,7 @@ function AboutStatCounter({ value, suffix, label }: { value: number; suffix: str
     <div ref={ref} className="text-center">
       <div
         className="text-4xl mb-3 font-light"
-        style={{ fontFamily: 'Cormorant, serif', color: 'var(--primary)' }}
+        style={{ fontFamily: 'Cinzel, serif', color: 'var(--primary)' }}
       >
         {formatted}
       </div>
@@ -32,26 +33,7 @@ function AboutStatCounter({ value, suffix, label }: { value: number; suffix: str
   );
 }
 
-const principles = [
-  {
-    title: 'Excellence',
-    desc: 'We maintain the highest standards in every aspect of our training, from curriculum development to individual consultation. Our commitment to excellence is reflected in our results.'
-  },
-  {
-    title: 'Discretion',
-    desc: 'Your journey with us is conducted with complete confidentiality and professionalism. We understand the importance of privacy in personal development and honor it absolutely.'
-  },
-  {
-    title: 'Results',
-    desc: 'Our proven methodologies deliver measurable transformation in presence, perception, and professional impact. We are committed to tangible outcomes that enhance your life.'
-  },
-  {
-    title: 'Dedication',
-    desc: 'We are personally invested in your success. Our relationship extends beyond program completion, with continued guidance and support as you grow.'
-  }
-];
-
-function PrincipleCard({ principle, index }: { principle: typeof principles[0]; index: number }) {
+function PrincipleCard({ principle, index }: { principle: { title: string; desc: string }; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-60px' });
 
@@ -78,7 +60,7 @@ function PrincipleCard({ principle, index }: { principle: typeof principles[0]; 
       <GoldLine className="mb-6" width="2rem" />
       <h4
         className="text-xl mb-4 font-bold"
-        style={{ fontFamily: 'Cormorant, serif', color: 'var(--text-heading)' }}
+        style={{ fontFamily: 'Cinzel, serif', color: 'var(--text-heading)' }}
       >
         {principle.title}
       </h4>
@@ -93,6 +75,13 @@ function PrincipleCard({ principle, index }: { principle: typeof principles[0]; 
 }
 
 export function About() {
+  const { t, tRaw } = useTranslation();
+
+  const story = tRaw('about.story') as string[];
+  const statsLabels = tRaw('about.stats') as { label: string }[];
+  const principles = tRaw('about.principles') as { title: string; desc: string }[];
+  const certifications = tRaw('about.certifications') as string[];
+
   return (
     <section
       id="about"
@@ -107,38 +96,29 @@ export function About() {
               className="tracking-[0.3em] text-[10px] font-medium uppercase"
               style={{ color: 'var(--primary)' }}
             >
-              Our Philosophy
+              {t('about.tag')}
             </span>
           </div>
           <GoldLine className="mb-6" width="3rem" />
           <h2
             className="text-[clamp(2.5rem,5vw,4.5rem)] mb-6 font-light leading-[1.15] tracking-[-0.01em]"
-            style={{ fontFamily: 'Cormorant, serif' }}
+            style={{ fontFamily: 'Cinzel, serif' }}
           >
-            <span style={{ color: 'var(--text-heading)' }}>Where Refinement</span><br/>
-            <span style={{ color: 'var(--primary)' }}>Meets Authenticity</span>
+            <span style={{ color: 'var(--text-heading)' }}>{t('about.headingLine1')}</span>
           </h2>
         </SectionReveal>
 
         {/* Story Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start mb-32">
           <div className="space-y-8">
-            <SectionReveal delay={0}>
-              <p className="text-base leading-[1.8] font-light" style={{ color: 'var(--text-body)' }}>
-                Founded in 2010, Elite Protocol was established by internationally recognized etiquette experts and image consultants with a singular mission: to bridge the gap between innate potential and polished excellence.
-              </p>
-            </SectionReveal>
-            <SectionReveal delay={0.1}>
-              <p className="text-base leading-[1.8] font-light" style={{ color: 'var(--text-body)' }}>
-                What began as a boutique consultancy has evolved into a comprehensive institute, serving discerning clients from C-suite executives to emerging professionals, from social elites to global organizations seeking to elevate their teams.
-              </p>
-            </SectionReveal>
-            <SectionReveal delay={0.2}>
-              <p className="text-base leading-[1.8] font-light" style={{ color: 'var(--text-body)' }}>
-                Today, we stand as the premier destination for those who understand that true success encompasses not only achievement, but the grace and confidence with which it is attained.
-              </p>
-            </SectionReveal>
-            <SectionReveal delay={0.3}>
+            {story.map((paragraph, i) => (
+              <SectionReveal key={i} delay={i * 0.1}>
+                <p className="text-base leading-[1.8] font-light" style={{ color: 'var(--text-body)' }}>
+                  {paragraph}
+                </p>
+              </SectionReveal>
+            ))}
+            <SectionReveal delay={0.4}>
               <div className="pt-6">
                 <motion.button
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
@@ -150,7 +130,7 @@ export function About() {
                     borderColor: 'var(--border)',
                   }}
                 >
-                  BEGIN YOUR JOURNEY
+                  {t('about.cta')}
                 </motion.button>
               </div>
             </SectionReveal>
@@ -172,8 +152,13 @@ export function About() {
           className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-32 py-20 border-y"
           style={{ borderColor: 'var(--border)' }}
         >
-          {stats.map((stat, index) => (
-            <AboutStatCounter key={index} value={stat.value} suffix={stat.suffix} label={stat.label} />
+          {statValues.map((stat, index) => (
+            <AboutStatCounter
+              key={index}
+              value={stat.value}
+              suffix={stat.suffix}
+              label={statsLabels[index]?.label ?? ''}
+            />
           ))}
         </div>
 
@@ -182,15 +167,15 @@ export function About() {
           <SectionReveal className="mb-20">
             <h3
               className="text-3xl mb-6 font-light"
-              style={{ fontFamily: 'Cormorant, serif', color: 'var(--text-heading)' }}
+              style={{ fontFamily: 'Cinzel, serif', color: 'var(--text-heading)' }}
             >
-              Our Principles
+              {t('about.principlesHeading')}
             </h3>
             <p
               className="text-base font-light leading-relaxed max-w-2xl"
               style={{ color: 'var(--text-body)' }}
             >
-              Four core values guide every program, interaction, and transformation we facilitate.
+              {t('about.principlesDescription')}
             </p>
           </SectionReveal>
 
@@ -208,16 +193,15 @@ export function About() {
               className="text-[11px] mb-10 tracking-[0.2em] font-medium"
               style={{ color: 'var(--text-heading)' }}
             >
-              ACCREDITED BY LEADING INSTITUTIONS
+              {t('about.certificationsHeading')}
             </h3>
             <div className="flex flex-wrap justify-center gap-x-10 gap-y-4 text-[10px] tracking-wider font-light" style={{ color: 'var(--text-caption)' }}>
-              <span className="transition-colors duration-300">International Association of Professions Career College</span>
-              <span style={{ color: 'var(--border)' }}>&bull;</span>
-              <span className="transition-colors duration-300">British School of Excellence</span>
-              <span style={{ color: 'var(--border)' }}>&bull;</span>
-              <span className="transition-colors duration-300">Global Protocol Academy</span>
-              <span style={{ color: 'var(--border)' }}>&bull;</span>
-              <span className="transition-colors duration-300">Association of Image Consultants International</span>
+              {certifications.map((cert, i) => (
+                <span key={i} className="flex items-center gap-10">
+                  {i > 0 && <span style={{ color: 'var(--border)' }}>&bull;</span>}
+                  <span className="transition-colors duration-300">{cert}</span>
+                </span>
+              ))}
             </div>
           </div>
         </SectionReveal>

@@ -1,7 +1,9 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
+import { useTranslation } from '../i18n/LanguageContext';
 
 export function Hero() {
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -10,15 +12,16 @@ export function Hero() {
 
   const glowY1 = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
   const glowY2 = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
+  const imgY = useTransform(scrollYProgress, [0, 1], ['0%', '12%']);
 
-  const headingWords1 = ['Cultivate', 'the'];
-  const headingWords2 = ['Art', 'of', 'Presence'];
+  const headingWords1 = t('hero.headingLine1').split(' ');
+  const headingWords2 = t('hero.headingLine2').split(' ');
 
   return (
     <section
       id="home"
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 sm:pt-24"
+      className="relative min-h-screen flex items-center overflow-hidden pt-20 sm:pt-24"
     >
       {/* Satin fabric base */}
       <div className="absolute inset-0 hero-satin-bg" />
@@ -38,7 +41,7 @@ export function Hero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           y: glowY1,
-          background: 'radial-gradient(ellipse at top right, rgba(20, 40, 90, 0.4) 0%, transparent 60%)',
+          background: 'radial-gradient(ellipse at top right, rgba(35, 41, 82, 0.4) 0%, transparent 60%)',
         }}
       />
       <motion.div
@@ -49,19 +52,11 @@ export function Hero() {
         }}
       />
 
-      {/* Bottom gradient fade into next section */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none z-10"
-        style={{
-          background: 'linear-gradient(to bottom, transparent, #EDE0CE)',
-        }}
-      />
-
       {/* Content */}
-      <div className="relative z-20 max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-20 w-full py-16 pb-32 sm:py-32 sm:pb-48">
-        <div className="max-w-6xl mx-auto">
-          {/* Main heading */}
-          <div>
+      <div className="relative z-20 max-w-[1600px] mx-auto px-6 sm:px-12 lg:px-20 w-full py-16 pb-24 sm:py-24 sm:pb-32 lg:py-32 lg:pb-40">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          {/* Left — Text (7 cols) */}
+          <div className="lg:col-span-7">
             {/* Tagline */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -71,15 +66,15 @@ export function Hero() {
             >
               <span
                 className="tracking-[0.3em] text-[14px] font-medium uppercase"
-                style={{ color: 'var(--primary)', fontFamily: 'Alesand, sans-serif' }}
+                style={{ color: '#E0C9A0', fontFamily: 'Alesand, sans-serif' }}
               >
-                Elite Protocol — Institute of Etiquette, Image & Presence
+                {t('hero.tagline')}
               </span>
             </motion.div>
 
-            <h1 className="mb-8 leading-[1.05] tracking-[-0.02em]" style={{ fontFamily: 'Cormorant, serif' }}>
-              {/* Line 1: "Cultivate the" */}
-              <span className="block font-light text-[clamp(3.5rem,7vw,6.5rem)]" style={{ color: '#FFFFFF' }}>
+            <h1 className="mb-8 leading-[1.05] tracking-[-0.02em]" style={{ fontFamily: 'Cinzel, serif' }}>
+              {/* Line 1 */}
+              <span className="block font-light text-[clamp(2.5rem,5vw,4.5rem)]" style={{ color: '#F3FAFC' }}>
                 {headingWords1.map((word, i) => (
                   <motion.span
                     key={`w1-${i}`}
@@ -92,15 +87,10 @@ export function Hero() {
                   </motion.span>
                 ))}
               </span>
-              {/* Line 2: "Art of Presence" — gold gradient text */}
+              {/* Line 2 */}
               <span
-                className="block font-normal text-[clamp(4rem,8vw,7.5rem)] mt-1"
-                style={{
-                  background: 'linear-gradient(135deg, #B89A5D, #D3B67F, #E0C9A0, #D3B67F)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
+                className="block font-normal text-[clamp(3rem,6vw,5.5rem)] mt-1"
+                style={{ color: '#E0C9A0' }}
               >
                 {headingWords2.map((word, i) => (
                   <motion.span
@@ -121,10 +111,10 @@ export function Hero() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.1 }}
-              className="max-w-2xl mb-10 sm:mb-16"
+              className="max-w-xl mb-10 sm:mb-14"
             >
-              <p className="text-base leading-[1.8] font-light" style={{ color: 'rgba(176, 189, 214, 0.9)' }}>
-                A comprehensive approach to personal refinement. We work with discerning individuals to develop authentic presence, impeccable etiquette, and lasting confidence.
+              <p className="text-base leading-[1.8] font-light" style={{ color: 'rgba(243, 250, 252, 0.8)' }}>
+                {t('hero.description')}
               </p>
             </motion.div>
 
@@ -142,10 +132,10 @@ export function Hero() {
                 className="px-11 py-4 text-[10px] tracking-[0.2em] font-medium transition-all duration-300"
                 style={{
                   background: 'linear-gradient(135deg, #B89A5D, #D3B67F)',
-                  color: '#0A1432',
+                  color: '#222636',
                 }}
               >
-                SCHEDULE CONSULTATION
+                {t('hero.cta1')}
               </motion.button>
 
               <motion.button
@@ -154,14 +144,54 @@ export function Hero() {
                 whileTap={{ scale: 0.98 }}
                 className="px-11 py-4 text-[10px] tracking-[0.2em] font-light transition-all duration-300 border"
                 style={{
-                  color: 'rgba(255,255,255,0.7)',
+                  color: 'rgba(243,250,252,0.7)',
                   borderColor: 'rgba(211, 182, 127, 0.3)',
                 }}
               >
-                VIEW SERVICES
+                {t('hero.cta2')}
               </motion.button>
             </motion.div>
           </div>
+
+          {/* Right — Image (5 cols) */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-5 relative flex justify-center lg:justify-end"
+          >
+            <motion.div
+              className="relative w-full max-w-[420px]"
+              style={{ y: imgY }}
+            >
+              {/* Image frame */}
+              <div className="relative aspect-[3/4] max-h-[520px]">
+                {/* Outer border */}
+                <div className="absolute -inset-3 pointer-events-none hero-img-border-outer" />
+                {/* Inner border + image */}
+                <div className="relative w-full h-full overflow-hidden hero-img-border">
+                  <img
+                    src="/hero-protocol1.jpg"
+                    alt="Elite Protocol — Refined presence"
+                    className="w-full h-full object-cover object-top"
+                    style={{
+                      filter: 'brightness(0.85) saturate(0.85)',
+                    }}
+                  />
+                  {/* Subtle edge fade — blends into hero bg */}
+                  <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background: `
+                        linear-gradient(to right, rgba(34,38,54,0.35) 0%, transparent 18%, transparent 82%, rgba(34,38,54,0.35) 100%),
+                        linear-gradient(to bottom, transparent 0%, transparent 70%, rgba(34,38,54,0.55) 100%)
+                      `,
+                    }}
+                  />
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>
