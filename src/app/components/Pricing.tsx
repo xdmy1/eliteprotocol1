@@ -5,13 +5,13 @@ import { GoldLine } from './animations/GoldLine';
 import { SectionReveal } from './animations/SectionReveal';
 import { useTranslation } from '../i18n/LanguageContext';
 
-const planPrices = [250, 850, 0];
+const planPrices = [350, 350, 690];
 const planPopular = [false, true, false];
 
 function PriceDisplay({ price }: { price: number }) {
   const { ref, formatted } = useCountUp({
     end: price,
-    prefix: '$',
+    prefix: '€',
     duration: 1800,
   });
 
@@ -28,6 +28,7 @@ interface PlanCardData {
   name: string;
   tagline: string;
   price: number;
+  priceSub: string;
   period: string;
   description: string;
   features: string[];
@@ -107,6 +108,14 @@ function PricingCard({ plan, index }: { plan: PlanCardData; index: number }) {
                 </span>
               </div>
             )}
+            {plan.priceSub && (
+              <p
+                className="text-[11px] mt-1 font-light"
+                style={{ color: 'var(--text-caption)' }}
+              >
+                {plan.priceSub}
+              </p>
+            )}
             <p
               className="text-[10px] mt-2 tracking-wider uppercase font-light"
               style={{ color: 'var(--text-faint)' }}
@@ -166,7 +175,7 @@ function PricingCard({ plan, index }: { plan: PlanCardData; index: number }) {
 export function Pricing() {
   const { t, tRaw } = useTranslation();
 
-  const plans: PlanCardData[] = (tRaw('pricing.plans') as { name: string; tagline: string; period: string; description: string; features: string[] }[]).map(
+  const plans: PlanCardData[] = (tRaw('pricing.plans') as { name: string; tagline: string; priceSub: string; period: string; description: string; features: string[] }[]).map(
     (plan, i) => ({
       ...plan,
       price: planPrices[i],

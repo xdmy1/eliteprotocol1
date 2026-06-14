@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elithropical Junior — Programe</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --gold:#C9A96E;
+  --gold-lt:#E8D5A3;
+  --gold-pale:#F7F0E3;
+  --dark:#1C1814;
+  --charcoal:#2D2926;
+  --mid:#6B5F55;
+  --muted:#9C9189;
+  --cream:#FAF8F4;
+  --white:#FFFFFF;
+  --blush:#F2E8E3;
+  --sage:#7A8C7E;
+  --sage-lt:#EEF3EF;
+  --pro:#3D2B1F;
+  --pro-gold:#D4A853;
+}
+
+body{
+  background:var(--cream);
+  color:var(--dark);
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  line-height:1.7;
+  overflow-x:hidden;
+}
+
+/* ── HERO ───────────────────────────────────── */
+.hero{
+  min-height:100vh;
+  background:var(--charcoal);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:80px 24px;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse 70% 50% at 50% -10%,rgba(201,169,110,.22) 0%,transparent 65%),
+             radial-gradient(ellipse 40% 30% at 90% 110%,rgba(201,169,110,.10) 0%,transparent 55%);
+  pointer-events:none;
+}
+.hero-eyebrow{
+  font-size:10px;letter-spacing:7px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:32px;
+  animation:fu .9s ease .1s both;
+}
+.hero-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(48px,9vw,100px);
+  font-weight:300;letter-spacing:10px;
+  color:var(--white);line-height:1;text-align:center;
+  animation:fu .9s ease .25s both;
+}
+.hero-logo em{color:var(--gold);font-style:italic}
+.hero-sub{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(16px,2.5vw,24px);
+  font-style:italic;color:var(--gold-lt);
+  margin-top:14px;letter-spacing:2px;
+  animation:fu .9s ease .4s both;
+}
+.hero-rule{
+  width:64px;height:1px;background:var(--gold);
+  margin:40px auto;animation:fu .9s ease .55s both;
+}
+.hero-desc{
+  font-size:12px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--muted);text-align:center;max-width:380px;
+  animation:fu .9s ease .7s both;
+}
+.hero-chips{
+  display:flex;gap:16px;margin-top:52px;flex-wrap:wrap;justify-content:center;
+  animation:fu .9s ease .85s both;
+}
+.chip{
+  border:1px solid rgba(201,169,110,.35);
+  padding:9px 22px;font-size:10px;letter-spacing:3.5px;
+  text-transform:uppercase;color:var(--gold-lt);
+}
+
+/* ── NAV ANCHOR TABS ────────────────────────── */
+.nav-tabs{
+  position:sticky;top:0;z-index:100;
+  background:var(--charcoal);
+  display:flex;justify-content:center;gap:0;
+  border-bottom:1px solid rgba(201,169,110,.2);
+}
+.nav-tab{
+  padding:16px 28px;font-size:10px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--muted);
+  text-decoration:none;transition:color .25s, border-bottom .25s;
+  border-bottom:2px solid transparent;cursor:pointer;
+}
+.nav-tab:hover,.nav-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+@media(max-width:600px){.nav-tab{padding:14px 14px;font-size:9px;letter-spacing:2px}}
+
+/* ── SECTION WRAPPERS ───────────────────────── */
+.prog-section{padding:90px 24px}
+.prog-section.alt{background:var(--white)}
+.prog-section.pro-bg{background:var(--pro)}
+.inner{max-width:1080px;margin:0 auto}
+
+/* ── PROGRAM HEADER ─────────────────────────── */
+.prog-head{
+  display:grid;grid-template-columns:auto 1fr;gap:40px;
+  align-items:start;margin-bottom:60px;
+  padding-bottom:48px;border-bottom:1px solid rgba(201,169,110,.25);
+}
+.age-box{
+  width:130px;height:130px;
+  border:1px solid var(--gold);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.age-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:38px;font-weight:300;color:var(--gold);line-height:1;
+}
+.age-word{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:5px}
+.prog-meta{flex:1;min-width:0}
+.prog-level{
+  display:inline-block;
+  font-size:9px;letter-spacing:4px;text-transform:uppercase;
+  border:1px solid var(--gold-lt);padding:4px 12px;
+  color:var(--gold);margin-bottom:14px;
+}
+.prog-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(30px,5vw,52px);
+  font-weight:300;line-height:1.1;color:var(--charcoal);margin-bottom:10px;
+}
+.prog-title em{font-style:italic;color:var(--gold)}
+.prog-price{
+  display:inline-block;
+  background:var(--gold);
+  color:var(--dark);
+  font-size:13px;font-weight:500;letter-spacing:2px;
+  padding:6px 20px;margin-bottom:14px;
+}
+.prog-desc{font-size:15px;color:var(--muted);line-height:1.9;max-width:560px}
+
+/* pro variant */
+.prog-head.pro .age-box{border-color:var(--pro-gold)}
+.prog-head.pro .age-num{color:var(--pro-gold)}
+.prog-head.pro .prog-level{border-color:rgba(212,168,83,.4);color:var(--pro-gold)}
+.prog-head.pro .prog-title{color:var(--white)}
+.prog-head.pro .prog-title em{color:var(--pro-gold)}
+.prog-head.pro .prog-price{background:var(--pro-gold)}
+.prog-head.pro .prog-desc{color:rgba(255,255,255,.6)}
+
+/* ── MODULES GRID ───────────────────────────── */
+.modules{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+  gap:2px;margin-bottom:40px;
+}
+.mod{
+  background:var(--white);
+  padding:30px 26px;
+  border-left:3px solid transparent;
+  transition:border-color .3s, box-shadow .3s;
+  position:relative;
+}
+.alt .mod{background:var(--cream)}
+.mod:hover{border-left-color:var(--gold);box-shadow:4px 0 20px rgba(0,0,0,.06)}
+.mod-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:44px;font-weight:300;color:var(--gold-lt);
+  line-height:1;margin-bottom:8px;
+}
+.mod h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:400;color:var(--charcoal);margin-bottom:8px;
+}
+.mod p{font-size:13px;color:var(--muted);line-height:1.8}
+.mod-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}
+.mod-chip{
+  font-size:10px;background:var(--gold-pale);
+  color:var(--charcoal);padding:3px 9px;border-radius:20px;
+}
+/* pro modules */
+.pro-bg .mod{background:rgba(255,255,255,.05)}
+.pro-bg .mod:hover{border-left-color:var(--pro-gold);box-shadow:4px 0 20px rgba(0,0,0,.3)}
+.pro-bg .mod-num{color:rgba(212,168,83,.3)}
+.pro-bg .mod h3{color:var(--white)}
+.pro-bg .mod p{color:rgba(255,255,255,.5)}
+.pro-bg .mod-chip{background:rgba(212,168,83,.15);color:var(--pro-gold)}
+
+/* ── OUTCOMES BAR ───────────────────────────── */
+.outcomes{
+  background:var(--blush);
+  padding:28px 32px;
+}
+.alt .outcomes{background:var(--gold-pale)}
+.outcomes h4{
+  font-size:9px;letter-spacing:4px;text-transform:uppercase;
+  color:var(--charcoal);margin-bottom:14px;
+}
+.outcomes-list{display:flex;flex-wrap:wrap;gap:10px 24px}
+.oc{
+  display:flex;align-items:baseline;gap:7px;
+  font-size:13px;color:var(--charcoal);
+}
+.oc::before{content:'◆';font-size:6px;color:var(--gold);flex-shrink:0}
+
+/* pro outcomes */
+.pro-bg .outcomes{background:rgba(255,255,255,.06)}
+.pro-bg .outcomes h4{color:rgba(255,255,255,.5)}
+.pro-bg .oc{color:rgba(255,255,255,.8)}
+
+/* ── UPGRADE BANNER ─────────────────────────── */
+.upgrade{
+  background:var(--charcoal);
+  padding:52px 40px;
+  margin-top:60px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:30px;flex-wrap:wrap;
+}
+.upgrade-text h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;font-weight:300;color:var(--white);margin-bottom:8px;
+}
+.upgrade-text h3 em{color:var(--gold);font-style:italic}
+.upgrade-text p{font-size:13px;color:var(--muted);max-width:480px;line-height:1.8}
+.upgrade-btn{
+  display:inline-block;
+  border:1px solid var(--gold);
+  color:var(--gold);
+  font-size:10px;letter-spacing:4px;text-transform:uppercase;
+  padding:14px 36px;text-decoration:none;
+  white-space:nowrap;
+  transition:background .25s, color .25s;
+}
+.upgrade-btn:hover{background:var(--gold);color:var(--dark)}
+
+/* pro upgrade banner */
+.pro-upgrade{
+  background:var(--gold);
+  padding:52px 40px;
+  margin-top:60px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:30px;flex-wrap:wrap;
+}
+.pro-upgrade h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;font-weight:300;color:var(--dark);
+}
+.pro-upgrade h3 em{font-style:italic}
+.pro-upgrade p{font-size:13px;color:rgba(26,22,18,.65);max-width:480px;line-height:1.8}
+.pro-upgrade-btn{
+  display:inline-block;
+  background:var(--dark);
+  color:var(--gold-lt);
+  font-size:10px;letter-spacing:4px;text-transform:uppercase;
+  padding:14px 36px;text-decoration:none;
+  white-space:nowrap;
+  transition:background .25s;
+}
+.pro-upgrade-btn:hover{background:var(--charcoal)}
+
+/* ── SECTION LABEL ──────────────────────────── */
+.section-lbl{
+  font-size:9px;letter-spacing:5px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:16px;display:block;
+}
+
+/* ── FORMAT STRIP ───────────────────────────── */
+.format-strip{
+  background:var(--charcoal);padding:72px 24px;
+}
+.format-grid{
+  max-width:1080px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:40px;
+}
+.fmt{text-align:center}
+.fmt-icon{font-size:26px;margin-bottom:14px}
+.fmt h4{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:400;color:var(--gold-lt);margin-bottom:6px;
+}
+.fmt p{font-size:13px;color:var(--muted);line-height:1.7}
+
+/* ── PROMISE ─────────────────────────────────── */
+.promise{
+  background:var(--cream);padding:100px 24px;text-align:center;
+}
+.promise blockquote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(22px,4vw,40px);
+  font-weight:300;font-style:italic;
+  color:var(--charcoal);max-width:760px;margin:0 auto 24px;line-height:1.4;
+}
+.promise blockquote em{color:var(--gold)}
+.promise cite{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--muted)}
+
+/* ── CTA ─────────────────────────────────────── */
+.cta-section{
+  background:var(--gold);padding:72px 24px;text-align:center;
+}
+.cta-section h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(26px,5vw,48px);font-weight:300;
+  color:var(--dark);margin-bottom:12px;
+}
+.cta-section p{font-size:14px;color:rgba(26,22,18,.65);margin-bottom:36px}
+.cta-btn{
+  display:inline-block;background:var(--dark);color:var(--gold-lt);
+  padding:16px 52px;font-size:11px;letter-spacing:4px;
+  text-transform:uppercase;text-decoration:none;
+  transition:background .25s;
+}
+.cta-btn:hover{background:var(--charcoal)}
+
+/* ── FOOTER ──────────────────────────────────── */
+footer{background:var(--dark);padding:40px 24px;text-align:center}
+.f-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;letter-spacing:6px;color:var(--gold);margin-bottom:8px;
+}
+footer p{font-size:11px;color:var(--muted);letter-spacing:2px}
+
+/* ── DIVIDER ─────────────────────────────────── */
+.rule{width:52px;height:1px;background:var(--gold);margin:0 auto 40px}
+
+/* ── ANIMATION ───────────────────────────────── */
+@keyframes fu{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@media(max-width:640px){
+  .prog-head{grid-template-columns:1fr;gap:24px}
+  .age-box{width:100px;height:100px}
+  .age-num{font-size:28px}
+  .upgrade, .pro-upgrade{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Institut de Imagine · Etichete · Influență</div>
+  <div class="hero-logo">ELITHROPICAL<br><em>Junior</em></div>
+  <div class="hero-sub">École de l'Élégance pour les Jeunes</div>
+  <div class="hero-rule"></div>
+  <div class="hero-desc">Maniere · Stil · Imagine · Leadership</div>
+  <div class="hero-chips">
+    <div class="chip">8–12 ani · Nivel II</div>
+    <div class="chip">13–17 ani · Nivel III</div>
+    <div class="chip">13–17 ani · Pro</div>
+    <div class="chip">Chișinău · Moldova</div>
+  </div>
+</section>
+
+<!-- NAV TABS -->
+<nav class="nav-tabs">
+  <a class="nav-tab active" href="#nivel2">Little Ambassadors</a>
+  <a class="nav-tab" href="#nivel3">Young Elites</a>
+  <a class="nav-tab" href="#pro">Young Elites Pro</a>
+</nav>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- NIVEL II — LITTLE AMBASSADORS  8–12 ani         -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="prog-section" id="nivel2">
+  <div class="inner">
+    <span class="section-lbl">Programul I</span>
+
+    <div class="prog-head">
+      <div class="age-box">
+        <div class="age-num">8–12</div>
+        <div class="age-word">ani</div>
+      </div>
+      <div class="prog-meta">
+        <div class="prog-level">Nivel II — Juniors</div>
+        <div class="prog-title">Little <em>Ambassadors</em></div>
+        <div class="prog-price">350 €</div>
+        <p class="prog-desc">Un program de descoperire — copilul explorează lumea eleganței prin jocuri, povești, punere în scenă și activități practice. Totul este conceput pentru a fi memorabil, nu moralizator. Copilul pleacă acasă nu cu reguli, ci cu obiceiuri frumoase.</p>
+      </div>
+    </div>
+
+    <div class="modules">
+      <div class="mod">
+        <div class="mod-num">01</div>
+        <h3>Magia primei impresii</h3>
+        <p>Cum se fac prezentările, saluturile corecte, privirea și zâmbetul — limbajul nonverbal al unui copil sigur.</p>
+        <div class="mod-chips">
+          <span class="mod-chip">Salut și prezentare</span>
+          <span class="mod-chip">Contact vizual</span>
+          <span class="mod-chip">Postură</span>
+        </div>
+      </div>
+      <div class="mod">
+        <div class="mod-num">02</div>
+        <h3>Arta conversației</h3>
+        <p>Cum vorbim cu adulții și cu colegii. Regula „te rog" și „mulțumesc" — dincolo de cuvinte.</p>
+        <div class="mod-chips">
+          <span class="mod-chip">Ton și voce</span>
+          <span class="mod-chip">Ascultare</span>
+          <span class="mod-chip">Formulări politicoase</span>
+        </div>
+      </div>
+      <div class="mod">
+        <div class="mod-num">03</div>
+        <h3>La masă cu eleganță</h3>
+        <p>Eticheta mesei: tacâmuri, șervețel, comportament la restaurant și acasă. Teatru de masă distractiv.</p>
+        <div class="mod-chips">
+          <span class="mod-chip">Tacâmuri formale</span>
+          <span class="mod-chip">Comportament la masă</span>
+          <span class="mod-chip">Restaurant</span>
+        </div>
+      </div>
+      <div class="mod">
+        <div class="mod-num">04</div>
+        <h3>Stilul meu personal</h3>
+        <p>Culorile care se potrivesc, ținuta pentru diferite ocazii, îngrijirea personală ca respect față de sine.</p>
+        <div class="mod-chips">
+          <span class="mod-chip">Coduri vestimentare</span>
+          <span class="mod-chip">Culori</span>
+          <span class="mod-chip">Îngrijire</span>
+        </div>
+      </div>
+      <div class="mod">
+        <div class="mod-num">05</div>
+        <h3>Prietenie și relații frumoase</h3>
+        <p>Empatie, respect, cum să fii un prieten de calitate, eticheta în social media pentru copii.</p>
+        <div class="mod-chips">
+          <span class="mod-chip">Empatie</span>
+          <span class="mod-chip">Conflicte</span>
+          <span class="mod-chip">Prietenie</span>
+        </div>
+      </div>
+      <div class="mod">
+        <div class="mod-num">06</div>
+        <h3>Micul lider</h3>
+        <p>Cum să conduci un proiect, să-ți exprimi opinia cu grație, să fii model pentru cei din jur.</p>
+        <div class="mod-chips">
+          <span class="mod-chip">Voce proprie</span>
+          <span class="mod-chip">Echipă</span>
+          <span class="mod-chip">Responsabilitate</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="outcomes">
+      <h4>La finalul programului, copilul tău va ști să</h4>
+      <div class="outcomes-list">
+        <span class="oc">se prezinte elegant în orice context</span>
+        <span class="oc">mănânce formal la masă</span>
+        <span class="oc">comunice cu adulții cu naturalețe</span>
+        <span class="oc">aleagă ținuta potrivită pentru ocazie</span>
+        <span class="oc">construiască relații frumoase</span>
+        <span class="oc">demonstreze calități de lider mic</span>
+      </div>
+    </div>
+
+    <!-- UPGRADE BANNER → Nivel III -->
+    <div class="upgrade">
+      <div class="upgrade-text">
+        <h3>Continuă cu <em>Young Elites</em></h3>
+        <p>Absolvenții Little Ambassadors pot avansa direct la Nivel III — Young Elites (13–17 ani), unde eticheta devine stil de viață, iar leadershipul devine prezență reală. Prețul de upgrade pentru foștii cursanți: <strong style="color:var(--gold)">300 € în loc de 350 €</strong>.</p>
+      </div>
+      <a href="#nivel3" class="upgrade-btn">Descoperă Young Elites →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- NIVEL III — YOUNG ELITES  13–17 ani             -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="prog-section alt" id="nivel3">
+  <div class="inner">
+    <span class="section-lbl">Programul II</span>
+
+    <div class="prog-head">
+      <div class="age-box">
+        <div class="age-num">13–17</div>
+        <div class="age-word">ani</div>
+      </div>
+      <div class="prog-meta">
+        <div class="prog-level">Nivel III — Seniors</div>
+        <div class="prog-title">Young <em>Elites</em></div>
+        <div class="prog-price">350 €</div>
+        <p class="prog-desc">Un program de formare a identității și prezenței — pentru adolescenții care vor să fie mai mult decât buni. Vor să fie memorabili. Combină eticheta internațională, stilul personal, comunicarea de impact și leadershipul autentic într-un parcurs transformator.</p>
+      </div>
+    </div>
+
+    <div class="modules">
+      <div class="mod">
+        <div class="mod-num">01</div>
+        <h3>Identitate și imagine personală</h3>
+        <p>Cine ești tu dincolo de haine. Personal branding la vârsta ta. Eleganța și istoria etichetei — de ce avem nevoie de eticheta în viața modernă.</p>
+        <div class="mod-chips">
+          <span class="mod-chip">Personal brand</span>
+          <span class="mod-chip">Autenticitate</span>
+          <span class="mod-chip">Percepție socială</span>
+        </div>
+      </div>
+      <div class="mod">
+        <div class="mod-num">02</div>
+        <h3>Protocol social internațional</h3>
+        <p>Prezentări formale, eticheta la eveniment, saluturile în diferite culturi, ordinea de precedență. Comportamentul la teatru, stradă, cinema.</p>
+        <div class="mod-chips">
+          <span class="mod-chip">Protocol</span>
+          <span class="mod-chip">Diferențe culturale</span>
+          <span class="mod-chip">Eticheta evenimentelor</span>
+        </div>
+      </div>
+      <div class="mod">
+        <div class="mod-num">03–04</div>
+        <h3>Fine Dining & Eticheta mesei</h3>
+        <p>Cina formală cu mai multe servicii, vinuri (non-alcool), conversația la masă, eticheta pentru restaurant de lux. <em>2 lecții practice.</em></p>
+        <div class="mod-chips">
+          <span class="mod-chip">Serviciu formal</span>
+          <span class="mod-chip">Ordinea tacâmurilor</span>
+          <span class="mod-chip">Restaurant</span>
+        </div>
+      </div>
+      <div class="mod">
+        <div class="mod-num">05</div>
+        <h3>Comunicare cu impact</h3>
+        <p>Public speaking pentru adolescenți, cum să prezinți un proiect, limbajul corpului, vocea ca instrument de influență.</p>
+        <div class="mod-chips">
+          <span class="mod-chip">Public speaking</span>
+          <span class="mod-chip">Limbaj corporal</span>
+          <span class="mod-chip">Voce</span>
+        </div>
+      </div>
+      <div class="mod">
+        <div class="mod-num">06</div>
+        <h3>Digital Elegance</h3>
+        <p>Eticheta pe rețele sociale, LinkedIn junior, emailuri profesionale — cum îți construiești o prezență digitală respectabilă.</p>
+        <div class="mod-chips">
+          <span class="mod-chip">Social media</span>
+          <span class="mod-chip">LinkedIn</span>
+          <span class="mod-chip">Email profesional</span>
+        </div>
+      </div>
+      <div class="mod">
+        <div class="mod-num">07</div>
+        <h3>Leadership cu caracter</h3>
+        <p>Tipuri de leadership, cum să influențezi fără să manipulezi, inteligență emoțională, rezolvarea conflictelor cu eleganță.</p>
+        <div class="mod-chips">
+          <span class="mod-chip">Inteligență emoțională</span>
+          <span class="mod-chip">Influență</span>
+          <span class="mod-chip">Rezolvare conflicte</span>
+        </div>
+      </div>
+      <div class="mod">
+        <div class="mod-num">08</div>
+        <h3>Prezența ca putere</h3>
+        <p>Cum să intri într-o cameră, cum să conduci o conversație. Cum să ai grijă de aspectul tău și să formezi încredere prin stil și imagine.</p>
+        <div class="mod-chips">
+          <span class="mod-chip">Executive presence</span>
+          <span class="mod-chip">Simulări</span>
+          <span class="mod-chip">Feedback</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="outcomes">
+      <h4>La finalul programului, adolescenta ta va ști să</h4>
+      <div class="outcomes-list">
+        <span class="oc">se prezinte cu autoritate și grație</span>
+        <span class="oc">navigheze orice cină formală</span>
+        <span class="oc">vorbească în public cu naturalețe</span>
+        <span class="oc">comunice elegant — digital și fizic</span>
+        <span class="oc">conducă cu caracter și inteligență</span>
+        <span class="oc">lase o impresie memorabilă în orice context</span>
+      </div>
+    </div>
+
+    <!-- UPGRADE BANNER → Pro -->
+    <div class="upgrade">
+      <div class="upgrade-text">
+        <h3>Vrei mai mult? Alege <em>Young Elites Pro</em></h3>
+        <p>Absolventele Young Elites pot continua cu nivelul Pro — un program exclusiv care adaugă automachiaj, coafură, manichiură, coloristică avansată, tipuri de stiluri, corectarea siluetei și construirea garderobei capsulă. Prețul de upgrade pentru foste cursante: <strong style="color:var(--gold)">700 € în loc de 750 €</strong>.</p>
+      </div>
+      <a href="#pro" class="upgrade-btn">Descoperă Young Elites Pro →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- NIVEL PRO — LITTLE AMBASSADOR PRO  13–17 ani    -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="prog-section pro-bg" id="pro">
+  <div class="inner">
+    <span class="section-lbl" style="color:var(--pro-gold)">Programul III — Exclusiv</span>
+
+    <div class="prog-head pro">
+      <div class="age-box">
+        <div class="age-num">13–17</div>
+        <div class="age-word">ani</div>
+      </div>
+      <div class="prog-meta">
+        <div class="prog-level">Young Elites Pro</div>
+        <div class="prog-title">Young Elites <em>Pro</em></div>
+        <div class="prog-price" style="background:var(--pro-gold)">750 €</div>
+        <p class="prog-desc">Programul complet pentru adolescenta care vrea să stăpânească fiecare dimensiune a eleganței — de la imagina interioară la cea exterioară. Include toate lecțiile Young Elites, plus un modul aprofundat de stil vizual, îngrijire și construcție de garderobă.</p>
+      </div>
+    </div>
+
+    <div class="modules">
+      <div class="mod">
+        <div class="mod-num">08</div>
+        <h3>Eleganța — un stil de viață</h3>
+        <p>Cum este o fată elegantă — stilul ei de viață, obiceiurile, hobbiurile, relația cu lumea. Eleganța nu este o ținută, este o alegere zilnică.</p>
+        <div class="mod-chips">
+          <span class="mod-chip">Obiceiuri elegante</span>
+          <span class="mod-chip">Stil de viață</span>
+          <span class="mod-chip">Mentalitate</span>
+        </div>
+      </div>
+      <div class="mod">
+        <div class="mod-num">09</div>
+        <h3>Construirea imaginii de succes</h3>
+        <p>Care sunt pilonii imaginii de succes. Cum se construiesc pas cu pas. <strong>Bonus:</strong> lecție practică de mers elegant — postură, ritm, prezență în mișcare.</p>
+        <div class="mod-chips">
+          <span class="mod-chip">Pilonii imaginii</span>
+          <span class="mod-chip">Mers elegant</span>
+          <span class="mod-chip">Prezență fizică</span>
+        </div>
+      </div>
+      <div class="mod">
+        <div class="mod-num">10–11</div>
+        <h3>Îngrijire personală — practică</h3>
+        <p>Automachiaj zilnic și de ocazie, manichiură impecabilă, coafură și aranjarea părului. <em>2 lecții complet practice.</em></p>
+        <div class="mod-chips">
+          <span class="mod-chip">Automachiaj</span>
+          <span class="mod-chip">Manichiură</span>
+          <span class="mod-chip">Coafură</span>
+        </div>
+      </div>
+      <div class="mod">
+        <div class="mod-num">12–15</div>
+        <h3>Stilul personal ca limbaj</h3>
+        <p>Introducere în stil, tipuri de stiluri, analiza culorii personale (coloristica), tipul de corp, dress codes Smart Casual → Black Tie. Studiul culorilor. <em>4 lecții.</em></p>
+        <div class="mod-chips">
+          <span class="mod-chip">Tipuri de stiluri</span>
+          <span class="mod-chip">Coloristică</span>
+          <span class="mod-chip">Dress codes</span>
+          <span class="mod-chip">Tipul de corp</span>
+        </div>
+      </div>
+      <div class="mod">
+        <div class="mod-num">16</div>
+        <h3>Garderoba capsulă</h3>
+        <p>Crearea garderobei capsulă personale — piese esențiale, lookuri complete, combinații elegante. Cum cumperi inteligent și pui în valoare ce ai.</p>
+        <div class="mod-chips">
+          <span class="mod-chip">Garderobă capsulă</span>
+          <span class="mod-chip">Lookuri complete</span>
+          <span class="mod-chip">Analiza culorii</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="outcomes">
+      <h4>La finalul programului Pro, adolescenta ta va stăpâni</h4>
+      <div class="outcomes-list">
+        <span class="oc">toate competențele Young Elites</span>
+        <span class="oc">automachiaj natural și de ocazie</span>
+        <span class="oc">coafuri elegante executate singură</span>
+        <span class="oc">manichiură igienică impecabilă</span>
+        <span class="oc">paleta ei personală de culori</span>
+        <span class="oc">stilul ei dominant identificat și exprimat</span>
+        <span class="oc">o garderobă capsulă funcțională</span>
+        <span class="oc">mersul și prezența ca instrument de putere</span>
+      </div>
+    </div>
+
+    <!-- FINAL PRO BANNER -->
+    <div class="pro-upgrade">
+      <div>
+        <h3>Investiția completă: <em>Young Elites + Pro</em></h3>
+        <p>Dacă adolescenta ta a finalizat Young Elites (350 €) și vrea să continue cu Pro, prețul de upgrade este 700 € în loc de 750 €. Sau începeți direct cu pachetul complet la prețul special de <strong>1.000 € în loc de 1.100 €</strong>.</p>
+      </div>
+      <a href="#" class="pro-upgrade-btn">Solicită o consultație gratuită →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FORMAT -->
+<section class="format-strip">
+  <div class="format-grid">
+    <div class="fmt">
+      <div class="fmt-icon">📅</div>
+      <h4>Sesiuni săptămânale</h4>
+      <p>90–120 minute pe sesiune, ritm confortabil, profunzime reală</p>
+    </div>
+    <div class="fmt">
+      <div class="fmt-icon">👥</div>
+      <h4>Grupe mici</h4>
+      <p>Maxim 8–10 participante — atenție personalizată, atmosferă intimă</p>
+    </div>
+    <div class="fmt">
+      <div class="fmt-icon">🎭</div>
+      <h4>Metode active</h4>
+      <p>Role-play, simulări reale, cine demonstrative, exerciții interactive</p>
+    </div>
+    <div class="fmt">
+      <div class="fmt-icon">📜</div>
+      <h4>Certificat Elithropical</h4>
+      <p>Diplomă de absolvire — prima dovadă de excelență personală</p>
+    </div>
+    <div class="fmt">
+      <div class="fmt-icon">👩‍👧</div>
+      <h4>Sesiune pentru părinți</h4>
+      <p>Feedback și recomandări de continuitate la finalul fiecărui program</p>
+    </div>
+    <div class="fmt">
+      <div class="fmt-icon">📍</div>
+      <h4>Locație</h4>
+      <p>Elithropical Institute, Chișinău — spațiu elegant, experiențe de calitate</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROMISE -->
+<section class="promise">
+  <div class="rule"></div>
+  <blockquote>
+    „Eleganța nu este să fii remarcată —<br><em>este să fii memorată.</em>"
+  </blockquote>
+  <div class="rule"></div>
+  <cite>Natalia Croitor · Fondatoare Elithropical</cite>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Înscrie-ți copilul acum</h2>
+  <p>Locurile sunt limitate. Investiția în eleganță începe cu un singur pas.</p>
+  <a href="#" class="cta-btn">Solicită informații</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">ELITHROPICAL</div>
+  <p>Institut de Imagine · Etichete · Influență · Chișinău, Moldova</p>
+</footer>
+
+<script>
+// Smooth tab highlight on scroll
+const tabs = document.querySelectorAll('.nav-tab');
+const sections = ['nivel2','nivel3','pro'].map(id=>document.getElementById(id));
+window.addEventListener('scroll',()=>{
+  let current='';
+  sections.forEach(s=>{
+    if(window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  tabs.forEach(t=>{
+    t.classList.toggle('active', t.getAttribute('href')==='#'+current);
+  });
+},{passive:true});
+// Smooth scroll
+tabs.forEach(t=>{
+  t.addEventListener('click',e=>{
+    e.preventDefault();
+    const target=document.querySelector(t.getAttribute('href'));
+    target.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>

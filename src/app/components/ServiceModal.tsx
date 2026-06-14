@@ -10,11 +10,20 @@ import { XIcon } from 'lucide-react';
 import { GoldLine } from './animations/GoldLine';
 import { useTranslation } from '../i18n/LanguageContext';
 
+interface CurriculumSection {
+  label: string;
+  items: { name: string; detail: string }[];
+}
+
 interface ServiceData {
   number: string;
   title: string;
+  audience: string;
   description: string;
   features: string[];
+  curriculum: CurriculumSection[];
+  outcomes: string[];
+  priceNote: string;
 }
 
 interface ServiceModalProps {
@@ -110,7 +119,7 @@ export function ServiceModal({ open, onClose, service }: ServiceModalProps) {
                   backgroundColor: 'rgba(61,74,140,0.08)',
                 }}
               >
-                {t('services.tag').toUpperCase()}
+                {service.audience.toUpperCase()}
               </span>
             </div>
 
@@ -146,12 +155,91 @@ export function ServiceModal({ open, onClose, service }: ServiceModalProps) {
               ))}
             </ul>
 
+            {/* Curriculum */}
+            {service.curriculum?.length > 0 && (
+              <div className="mb-8">
+                <h4
+                  className="text-[10px] tracking-[0.2em] font-medium uppercase mb-5"
+                  style={{ color: '#3d4a8c' }}
+                >
+                  {t('serviceModal.curriculumLabel')}
+                </h4>
+                <div className="space-y-6">
+                  {service.curriculum.map((section, si) => {
+                    const offset = service.curriculum
+                      .slice(0, si)
+                      .reduce((sum, s) => sum + s.items.length, 0);
+                    return (
+                    <div key={si}>
+                      <div
+                        className="text-[10px] tracking-[0.15em] font-medium uppercase mb-3 pb-2 border-b"
+                        style={{ color: '#6b7280', borderColor: 'rgba(61,74,140,0.15)' }}
+                      >
+                        {section.label}
+                      </div>
+                      <ul className="space-y-3">
+                        {section.items.map((item, ii) => (
+                          <li key={ii} className="flex gap-3">
+                            <span
+                              className="text-[11px] font-light tabular-nums mt-0.5"
+                              style={{ color: '#3d4a8c', minWidth: '1.5rem' }}
+                            >
+                              {String(offset + ii + 1).padStart(2, '0')}
+                            </span>
+                            <div>
+                              <p className="text-xs font-medium" style={{ color: '#1f2937' }}>
+                                {item.name}
+                              </p>
+                              <p className="text-xs font-light leading-relaxed" style={{ color: '#4b5563' }}>
+                                {item.detail}
+                              </p>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Outcomes */}
+            {service.outcomes?.length > 0 && (
+              <div
+                className="mb-8 p-6 border"
+                style={{
+                  borderColor: 'rgba(61,74,140,0.2)',
+                  backgroundColor: 'rgba(61,74,140,0.05)',
+                }}
+              >
+                <h4
+                  className="text-[10px] tracking-[0.2em] font-medium uppercase mb-4"
+                  style={{ color: '#3d4a8c' }}
+                >
+                  {t('serviceModal.outcomesLabel')}
+                </h4>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
+                  {service.outcomes.map((outcome, idx) => (
+                    <li
+                      key={idx}
+                      className="flex items-start gap-2 text-xs font-light"
+                      style={{ color: '#374151' }}
+                    >
+                      <span style={{ color: '#3d4a8c' }} className="mt-0.5">&bull;</span>
+                      <span>{outcome}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             {/* Price label */}
             <div
               className="mb-8 text-sm tracking-wide font-light"
               style={{ color: '#3d4a8c' }}
             >
-              {t('serviceModal.price')}
+              {service.priceNote || t('serviceModal.price')}
             </div>
 
             {/* CTA / Form / Success */}

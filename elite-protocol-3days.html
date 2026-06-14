@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Executive Edge™ · 3 Zile · Elite Protocol</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:   #0B0A08;
+    --black2:  #161410;
+    --black3:  #201E1A;
+    --gold:    #C8A45A;
+    --gold2:   #A8853E;
+    --gold-bg: #F7F0E2;
+    --gold-md: #EDE0C4;
+    --ivory:   #FDFBF6;
+    --stone:   #7C7162;
+    --stone2:  #B0A48E;
+    --cream:   #F4EFE4;
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Jost',sans-serif; background:var(--ivory); color:var(--black); overflow-x:hidden; }
+
+  @keyframes revealUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes pulse { 0%,100%{opacity:.5} 50%{opacity:1} }
+  .r1{animation:revealUp .7s .05s both ease}
+  .r2{animation:revealUp .7s .18s both ease}
+  .r3{animation:revealUp .7s .32s both ease}
+  .r4{animation:revealUp .7s .46s both ease}
+
+  /* ── HERO ── */
+  .hero {
+    background:var(--black);
+    min-height:100vh;
+    display:flex; flex-direction:column;
+    position:relative; overflow:hidden;
+  }
+  .hero::before {
+    content:''; position:absolute; inset:0;
+    background:repeating-linear-gradient(-55deg,rgba(200,164,90,.022) 0px,rgba(200,164,90,.022) 1px,transparent 1px,transparent 60px);
+  }
+  .hero-ghost {
+    position:absolute; right:-30px; bottom:-70px;
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(140px,22vw,270px);
+    font-weight:600; color:rgba(200,164,90,.033);
+    line-height:1; letter-spacing:-6px;
+    user-select:none; pointer-events:none;
+  }
+  .hero-glow {
+    position:absolute; bottom:-80px; left:50%; transform:translateX(-50%);
+    width:700px; height:380px;
+    background:radial-gradient(ellipse,rgba(200,164,90,.09) 0%,transparent 70%);
+    pointer-events:none;
+  }
+  .hero-rule { position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+
+  .hero-inner {
+    flex:1; display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    text-align:center; padding:90px 40px 50px;
+    position:relative; z-index:2;
+  }
+  .brand-line { display:flex; align-items:center; gap:14px; margin-bottom:34px; }
+  .brand-line::before,.brand-line::after { content:''; height:1px; width:34px; background:var(--gold); opacity:.7; }
+  .brand-line span { font-size:10px; letter-spacing:5px; text-transform:uppercase; color:var(--gold); font-weight:500; }
+
+  .hero h1 {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(50px,8vw,100px);
+    font-weight:300; color:var(--ivory);
+    line-height:1.05; letter-spacing:-1px;
+  }
+  .hero h1 em { font-style:italic; color:var(--gold); display:block; }
+
+  .hero-sub {
+    margin-top:20px; font-size:clamp(13px,1.6vw,16px);
+    font-weight:300; color:rgba(253,251,246,.42);
+    max-width:520px; line-height:1.85;
+  }
+  .hero-divider { width:1px; height:54px; background:linear-gradient(to bottom,var(--gold),transparent); margin:34px auto; }
+
+  .badges { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
+  .badge {
+    border:1px solid rgba(200,164,90,.3);
+    padding:8px 20px; font-size:9.5px; letter-spacing:2.5px;
+    text-transform:uppercase; color:rgba(253,251,246,.6); font-weight:500;
+    transition:border-color .25s,color .25s;
+  }
+  .badge:hover { border-color:var(--gold); color:var(--gold); }
+  .badge.solid { background:var(--gold); color:var(--black); border-color:var(--gold); font-weight:600; }
+
+  .hero-stats {
+    border-top:1px solid rgba(200,164,90,.1);
+    padding:26px 40px;
+    display:flex; justify-content:center; gap:52px; flex-wrap:wrap;
+    position:relative; z-index:2;
+  }
+  .si { text-align:center; }
+  .si .sv { font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:400; color:var(--gold); display:block; }
+  .si .sl { font-size:9px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(253,251,246,.3); margin-top:3px; display:block; }
+
+  /* ── LAYOUT ── */
+  .w { max-width:1100px; margin:0 auto; padding:0 40px; }
+  .sec { padding:84px 0; }
+  .sec--dark { background:var(--black2); }
+  .sec--tint { background:var(--gold-bg); }
+  .sec--mid  { background:var(--cream); }
+
+  .eyebrow {
+    font-size:9px; letter-spacing:4px; text-transform:uppercase; color:var(--gold);
+    margin-bottom:13px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::after { content:''; flex:0 0 30px; height:1px; background:var(--gold); opacity:.5; }
+
+  .sec-title {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(30px,4vw,50px);
+    font-weight:300; line-height:1.12; color:var(--black); margin-bottom:16px;
+  }
+  .sec-title em { font-style:italic; color:var(--gold2); }
+  .sec--dark .sec-title { color:var(--ivory); }
+  .sec--dark .eyebrow   { color:var(--gold); }
+
+  .sec-lead {
+    font-size:13.5px; line-height:1.85;
+    color:var(--stone); font-weight:300; max-width:600px; margin-bottom:48px;
+  }
+  .sec--dark .sec-lead { color:rgba(253,251,246,.38); }
+
+  /* ── QUOTE ── */
+  .strip { background:var(--gold); padding:30px 48px; text-align:center; }
+  .strip q {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(16px,2.2vw,22px); font-style:italic;
+    color:var(--black); max-width:820px; margin:0 auto; display:block; line-height:1.55;
+  }
+
+  /* ── TIMELINE OVERVIEW ── */
+  .timeline {
+    display:grid; grid-template-columns:repeat(3,1fr);
+    gap:1px; background:var(--gold-md); margin-top:48px;
+  }
+  .tl-item { background:var(--ivory); padding:30px 24px; text-align:center; }
+  .tl-num { font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:300; color:var(--gold); line-height:1; margin-bottom:12px; }
+  .tl-item h3 { font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:600; color:var(--black); margin-bottom:8px; }
+  .tl-item p { font-size:11.5px; color:var(--stone); line-height:1.7; font-weight:300; }
+  .tl-item em { font-style:italic; color:var(--gold2); }
+
+  /* ── DAY BLOCK ── */
+  .day-block { margin-bottom:72px; }
+  .day-block:last-child { margin-bottom:0; }
+
+  .day-header {
+    display:flex; align-items:stretch; gap:0; margin-bottom:22px;
+  }
+  .day-pill {
+    background:var(--gold); color:var(--black);
+    padding:16px 26px; font-size:9px; letter-spacing:3px;
+    text-transform:uppercase; font-weight:700;
+    flex-shrink:0; display:flex; align-items:center;
+  }
+  .day-title-box {
+    border:1px solid var(--gold-md); border-left:none;
+    padding:16px 28px; flex:1; display:flex; align-items:center;
+    background:var(--ivory);
+  }
+  .day-title-box h3 {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(17px,2.3vw,26px); font-weight:300; color:var(--black);
+  }
+  .day-title-box h3 em { font-style:italic; color:var(--gold2); }
+
+  /* ── MODULES ── */
+  .mods {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
+    gap:10px;
+  }
+  .mod {
+    border:1px solid var(--gold-md); background:var(--ivory);
+    padding:26px 22px; position:relative;
+    transition:box-shadow .25s; overflow:hidden;
+  }
+  .mod::before {
+    content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
+    background:linear-gradient(to bottom,var(--gold),var(--gold2));
+    transform:scaleY(0); transform-origin:top; transition:transform .3s ease;
+  }
+  .mod:hover::before { transform:scaleY(1); }
+  .mod:hover { box-shadow:0 4px 22px rgba(200,164,90,.1); }
+
+  .mod-n {
+    position:absolute; top:14px; right:14px;
+    font-family:'Cormorant Garamond',serif;
+    font-size:42px; font-weight:300; color:rgba(200,164,90,.1); line-height:1;
+  }
+  .mod-time { font-size:9px; letter-spacing:2px; color:var(--gold2); text-transform:uppercase; font-weight:600; margin-bottom:8px; }
+  .mod-title { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:600; color:var(--black); margin-bottom:12px; line-height:1.25; padding-right:36px; }
+
+  .mod-pts { list-style:none; margin-bottom:14px; }
+  .mod-pts li {
+    font-size:11.5px; color:var(--stone);
+    padding:4px 0 4px 16px; position:relative;
+    line-height:1.55; font-weight:300;
+    border-bottom:1px solid rgba(200,164,90,.07);
+  }
+  .mod-pts li:last-child { border-bottom:none; }
+  .mod-pts li::before {
+    content:''; position:absolute; left:1px; top:9px;
+    width:5px; height:5px; border:1px solid var(--gold); border-radius:50%;
+  }
+  .mod-tag {
+    font-size:8.5px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--gold2); background:var(--gold-bg);
+    padding:4px 12px; display:inline-block; font-weight:600;
+  }
+
+  .break-row {
+    display:flex; align-items:center; gap:18px;
+    background:var(--gold-bg); padding:12px 22px;
+    margin:10px 0; border-left:3px solid var(--gold);
+  }
+  .break-row .bt { font-size:9px; letter-spacing:2px; color:var(--gold2); text-transform:uppercase; font-weight:600; flex-shrink:0; }
+  .break-row .bd { font-family:'Cormorant Garamond',serif; font-size:14px; font-style:italic; color:var(--stone); }
+
+  .day-summary {
+    margin-top:16px; border:1px solid var(--gold-md);
+    background:var(--gold-bg); padding:18px 24px;
+    display:flex; align-items:flex-start; gap:14px;
+  }
+  .day-summary .ico { font-size:22px; flex-shrink:0; margin-top:2px; }
+  .day-summary p { font-size:12px; color:var(--stone); line-height:1.7; font-weight:300; }
+  .day-summary strong { color:var(--black); font-weight:500; }
+
+  /* ── SEPARATOR ── */
+  .day-sep {
+    display:flex; align-items:center; gap:24px;
+    margin:52px 0 0;
+  }
+  .day-sep::before,.day-sep::after {
+    content:''; flex:1; height:1px; background:var(--gold-md);
+  }
+  .day-sep span {
+    font-family:'Cormorant Garamond',serif;
+    font-size:13px; font-style:italic; color:var(--stone2);
+    white-space:nowrap; letter-spacing:1px;
+  }
+
+  /* ── OUTCOMES ── */
+  .out-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:26px; margin-top:48px; }
+  .out-item { display:flex; gap:16px; align-items:flex-start; }
+  .out-n { font-family:'Cormorant Garamond',serif; font-size:44px; font-weight:300; color:var(--gold); line-height:.9; flex-shrink:0; width:44px; animation:pulse 3.5s infinite; }
+  .out-text h4 { font-size:11px; letter-spacing:.5px; text-transform:uppercase; font-weight:600; color:var(--ivory); margin-bottom:5px; }
+  .out-text p  { font-size:11.5px; color:rgba(253,251,246,.4); line-height:1.7; font-weight:300; }
+
+  /* ── METHOD ── */
+  .method-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(175px,1fr)); gap:24px; margin-top:48px; }
+  .method-card { text-align:center; }
+  .method-ico {
+    width:66px; height:66px; border:1px solid rgba(200,164,90,.35); border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    margin:0 auto 14px; font-size:26px;
+    transition:background .25s,border-color .25s;
+  }
+  .method-card:hover .method-ico { background:rgba(200,164,90,.08); border-color:var(--gold); }
+  .method-card h4 { font-family:'Cormorant Garamond',serif; font-size:17px; font-weight:600; color:var(--black); margin-bottom:7px; }
+  .method-card p  { font-size:11.5px; color:var(--stone); line-height:1.7; font-weight:300; }
+
+  /* ── PRICING ── */
+  .price-grid {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:1px; background:rgba(200,164,90,.12); margin-top:48px;
+  }
+  .price-card { background:var(--black3); padding:42px 30px; position:relative; transition:transform .25s; }
+  .price-card:hover { transform:translateY(-4px); }
+  .price-card.feat { background:var(--gold); }
+  .price-card.feat .pl,.price-card.feat .pp,.price-card.feat .psub,.price-card.feat .pf li { color:var(--black)!important; }
+  .price-card.feat .pa { color:var(--black)!important; }
+  .price-card.feat .pf li { border-color:rgba(11,10,8,.1)!important; opacity:.8; }
+  .price-card.feat .pf li::before { color:var(--black)!important; }
+  .feat-badge { position:absolute; top:0; right:22px; background:var(--black); color:var(--gold); font-size:8px; letter-spacing:2px; text-transform:uppercase; padding:5px 13px; font-weight:700; }
+  .pl  { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:var(--stone2); margin-bottom:18px; }
+  .pa  { font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:300; color:var(--ivory); line-height:1; }
+  .pa sup { font-size:22px; vertical-align:super; }
+  .pp  { font-size:11px; color:var(--stone2); margin-top:5px; margin-bottom:3px; display:block; }
+  .psub{ font-size:10px; color:rgba(253,251,246,.27); margin-bottom:24px; }
+  .pf  { list-style:none; }
+  .pf li { font-size:11.5px; color:rgba(253,251,246,.5); padding:8px 0 8px 18px; position:relative; border-bottom:1px solid rgba(200,164,90,.07); font-weight:300; line-height:1.4; }
+  .pf li:last-child { border-bottom:none; }
+  .pf li::before { content:'✓'; position:absolute; left:0; color:var(--gold); font-size:10px; top:10px; }
+  .price-note { text-align:center; margin-top:26px; font-size:11.5px; color:var(--stone2); font-weight:300; line-height:1.8; }
+  .price-note strong { color:var(--ivory); font-weight:500; }
+
+  /* ── CTA ── */
+  .cta { background:var(--black); padding:100px 40px; text-align:center; position:relative; overflow:hidden; }
+  .cta::before {
+    content:'PROTOCOL'; position:absolute;
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(80px,14vw,180px); color:rgba(200,164,90,.03);
+    top:50%; left:50%; transform:translate(-50%,-50%);
+    letter-spacing:16px; white-space:nowrap; pointer-events:none; font-weight:600;
+  }
+  .cta .sec-title { color:var(--ivory); text-align:center; position:relative; z-index:1; }
+  .cta-sub { font-size:13px; color:rgba(253,251,246,.35); font-weight:300; margin-top:14px; position:relative; z-index:1; line-height:1.8; }
+  .cta-btn {
+    display:inline-block; background:var(--gold); color:var(--black);
+    text-decoration:none; font-size:10px; letter-spacing:3px;
+    text-transform:uppercase; font-weight:700; padding:18px 52px;
+    margin-top:36px; transition:background .25s,transform .2s;
+    cursor:pointer; border:none; font-family:'Jost',sans-serif;
+    position:relative; z-index:1;
+  }
+  .cta-btn:hover { background:#D4B660; transform:translateY(-2px); }
+  .cta-contact { font-size:10px; letter-spacing:2px; color:rgba(253,251,246,.2); margin-top:20px; text-transform:uppercase; position:relative; z-index:1; }
+
+  /* ── FOOTER ── */
+  footer { background:#080706; padding:32px 40px; text-align:center; }
+  .foot-logo { font-family:'Cormorant Garamond',serif; font-size:21px; color:var(--gold); letter-spacing:6px; text-transform:uppercase; font-weight:400; }
+  footer p { font-size:9.5px; letter-spacing:2px; color:rgba(253,251,246,.18); margin-top:8px; text-transform:uppercase; }
+
+  @media(max-width:640px){
+    .w { padding:0 20px; }
+    .sec { padding:60px 0; }
+    .hero-stats { gap:22px; }
+    .day-header { flex-direction:column; }
+    .day-title-box { border-left:1px solid var(--gold-md); }
+    .timeline { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-rule"></div>
+  <div class="hero-ghost">EDGE</div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="brand-line r1"><span>Elite Protocol · Program Corporativ</span></div>
+    <h1 class="r2">The Executive<em>Edge™</em></h1>
+    <p class="hero-sub r3">Programul complet de etichetă profesională, protocol de afaceri, imagine și leadership — structurat pe 3 zile pentru o absorbție reală și transformare durabilă.</p>
+    <div class="hero-divider"></div>
+    <div class="badges r4">
+      <span class="badge solid">11 module · 3 zile</span>
+      <span class="badge">Practică intensivă</span>
+      <span class="badge">Max. 12 participanți</span>
+      <span class="badge">Certificat Elite Protocol™</span>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="si"><span class="sv">11</span><span class="sl">Module</span></div>
+    <div class="si"><span class="sv">3</span><span class="sl">Zile</span></div>
+    <div class="si"><span class="sv">12</span><span class="sl">Max. Participanți</span></div>
+    <div class="si"><span class="sv">15+</span><span class="sl">Culturi</span></div>
+    <div class="si"><span class="sv">RO/RU</span><span class="sl">Limbi</span></div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="strip">
+  <q>Protocolul nu este despre rigiditate. Este despre libertatea de a te simți în largul tău oriunde — și de a-i face pe ceilalți să se simtă la fel.</q>
+</div>
+
+<!-- OVERVIEW -->
+<section class="sec">
+  <div class="w">
+    <p class="eyebrow">Structura programului</p>
+    <h2 class="sec-title">3 zile. <em>O transformare completă.</em></h2>
+    <p class="sec-lead">Fiecare zi are o logică proprie — construiești pe fundația zilei anterioare. Ziua I pune baza imaginii și comunicării. Ziua II intră în puterea protocolului și negocierii. Ziua III te pregătește să operezi cu ușurință în orice cultură și să îți proiectezi brandul personal.</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-num">I</div>
+        <h3>Imaginea &<br><em>Prima Impresie</em></h3>
+        <p>Eticheta spațiului de afaceri, instrumente de comunicare, dress code, audit de imagine.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-num">II</div>
+        <h3>Protocol &<br><em>Negociere</em></h3>
+        <p>Eticheta liderului, desfășurarea negocierilor, prânzul de afaceri, cultură corporativă.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-num">III</div>
+        <h3>Culturi &<br><em>Brand Personal</em></h3>
+        <p>Inteligență culturală (15+ culturi), reputație digitală, brand personal, certificare.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PROGRAM — TOATE 3 ZILELE
+═══════════════════════════════════════════ -->
+<section class="sec sec--tint">
+  <div class="w">
+    <p class="eyebrow">Curriculum detaliat</p>
+    <h2 class="sec-title">Programa <em>completă</em> · 3 Zile</h2>
+    <p class="sec-lead">11 module distribuite echilibrat în 3 zile. Fiecare sesiune combină teoria, demonstrații și exerciții practice cu feedback structurat.</p>
+
+    <!-- ════ ZIUA I ════ -->
+    <div class="day-block">
+      <div class="day-header">
+        <div class="day-pill">Ziua I</div>
+        <div class="day-title-box">
+          <h3>Imagine · Comunicare · <em>Instrumente Profesionale</em></h3>
+        </div>
+      </div>
+
+      <div class="mods">
+        <div class="mod">
+          <span class="mod-n">01</span>
+          <div class="mod-time">09:00 — 10:45</div>
+          <div class="mod-title">Eticheta în Spațiul de Afaceri & Colectivul de Muncă</div>
+          <ul class="mod-pts">
+            <li>Regulile spațiului comun de birou — ce este și ce nu este acceptabil</li>
+            <li>Ospitalitatea în mediul de birou: primirea vizitatorilor, clienților, partenerilor</li>
+            <li>Organizarea negocierilor: pregătire, protocol de desfășurare, follow-up</li>
+            <li>Eticheta ședinței: cum conduci și cum participi cu impact</li>
+            <li>Ierarhia invizibilă în spațiul de lucru — reguli nescrise esențiale</li>
+          </ul>
+          <span class="mod-tag">Spațiu & Colectiv</span>
+        </div>
+
+        <div class="mod">
+          <span class="mod-n">02</span>
+          <div class="mod-time">11:00 — 12:30</div>
+          <div class="mod-title">Autoprezentarea & Instrumentele de Comunicare în Afaceri</div>
+          <ul class="mod-pts">
+            <li>Elevator pitch: cum te prezinți în 60 de secunde cu impact real</li>
+            <li>Cărțile de vizită: protocolul complet de oferire și primire</li>
+            <li>Corespondența oficială de afaceri: structură, ton, formule de adresare</li>
+            <li>Eticheta apelurilor telefonice de serviciu — reguli esențiale</li>
+            <li>Exercițiu: simulare de autoprezentare cu feedback video imediat</li>
+          </ul>
+          <span class="mod-tag">Prezentare & Instrumente</span>
+        </div>
+      </div>
+
+      <div class="break-row">
+        <span class="bt">12:30 — 14:00</span>
+        <span class="bd">Pauză de prânz — Business Lunch Experience (exercițiu practic integrat în program)</span>
+      </div>
+
+      <div class="mods">
+        <div class="mod">
+          <span class="mod-n">03</span>
+          <div class="mod-time">14:00 — 15:45</div>
+          <div class="mod-title">Comunicarea în Afaceri & Eticheta Verbală</div>
+          <ul class="mod-pts">
+            <li>Componentele comunicării profesionale: verbal, paraverbal, nonverbal</li>
+            <li>Eticheta verbală: formule corecte de adresare, salut, mulțumire</li>
+            <li>Componenta de gen în interacțiunea profesională</li>
+            <li>Dimensiunea mondena: small talk, complimentul, umorul — limite și oportunități</li>
+            <li>Eticheta la evenimentele corporative: cum te mișți, cu cine vorbești, când pleci</li>
+          </ul>
+          <span class="mod-tag">Comunicare Verbală</span>
+        </div>
+
+        <div class="mod">
+          <span class="mod-n">04</span>
+          <div class="mod-time">16:00 — 17:45</div>
+          <div class="mod-title">Imaginea Profesională & Codurile Vestimentare</div>
+          <ul class="mod-pts">
+            <li>Imaginea ca instrument strategic al specialistului modern</li>
+            <li>Codurile vestimentare: Business Formal, Business Professional, Smart Casual, Casual</li>
+            <li>Codul culorilor în business — autoritate, accesibilitate, creativitate</li>
+            <li>Accesorii, detalii, greșeli clasice la bărbați și femei executives</li>
+            <li>Audit individual de imagine — feedback personalizat pentru fiecare participant</li>
+          </ul>
+          <span class="mod-tag">Imagine & Dress Code</span>
+        </div>
+      </div>
+
+      <div class="day-summary">
+        <span class="ico">🎯</span>
+        <p><strong>Ziua I se încheie cu:</strong> fiecare participant a practicat autoprezentarea, a primit feedback video pe comportament și un audit personal de imagine. Fundația imaginii și comunicării este pusă.</p>
+      </div>
+    </div>
+
+    <!-- SEPARATOR -->
+    <div class="day-sep"><span>Ziua a doua</span></div>
+
+    <!-- ════ ZIUA II ════ -->
+    <div class="day-block" style="margin-top:28px;">
+      <div class="day-header">
+        <div class="day-pill">Ziua II</div>
+        <div class="day-title-box">
+          <h3>Protocol · Eticheta Liderului · <em>Negociere & Dining</em></h3>
+        </div>
+      </div>
+
+      <div class="mods">
+        <div class="mod">
+          <span class="mod-n">05</span>
+          <div class="mod-time">09:00 — 10:45</div>
+          <div class="mod-title">Eticheta Liderului & Comportamentul de Statut</div>
+          <ul class="mod-pts">
+            <li>Protocolul în lucrul cu conducerea și primele persoane din organizație</li>
+            <li>Comportamentul de statut: privilegii, obligații, vizibilitate</li>
+            <li>Executive Presence — ce este, cum se construiește, cum se menține</li>
+            <li>Ordinea de precedență: cine intră primul, cine vorbește primul, cine semnează</li>
+            <li>Relația șef–subordonat: limite clare, respect autentic, autoritate naturală</li>
+          </ul>
+          <span class="mod-tag">Leadership & Protocol</span>
+        </div>
+
+        <div class="mod">
+          <span class="mod-n">06</span>
+          <div class="mod-time">11:00 — 12:45</div>
+          <div class="mod-title">Desfășurarea Negocierilor & Bazele Conflictologiei</div>
+          <ul class="mod-pts">
+            <li>Pregătirea negocierii: cercetare, strategie, obiective clare și alternative BATNA</li>
+            <li>Fazele negocierii și comportamentul adecvat în fiecare etapă</li>
+            <li>Bazele conflictologiei: tipuri de conflicte, tehnici de dezamorsare</li>
+            <li>Cum refuzi elegant fără să strici relația pe termen lung</li>
+            <li>Simulare completă: negociere în perechi cu observator și grilă de feedback</li>
+          </ul>
+          <span class="mod-tag">Negociere & Conflict</span>
+        </div>
+      </div>
+
+      <div class="break-row">
+        <span class="bt">12:45 — 14:15</span>
+        <span class="bd">Pauză de prânz — cu exercițiu de conversație la masă în context de business</span>
+      </div>
+
+      <div class="mods">
+        <div class="mod">
+          <span class="mod-n">07</span>
+          <div class="mod-time">14:15 — 15:45</div>
+          <div class="mod-title">Prânzul de Afaceri — Protocol Complet</div>
+          <ul class="mod-pts">
+            <li>Pregătirea prânzului: alegerea locului, invitația formală, confirmarea</li>
+            <li>Structura mesei formale: tacâmuri, pahare, ordinea serviciilor — exercițiu la masă</li>
+            <li>Comportamentul la masă: postură, ritm, comenzi elegante</li>
+            <li>Conversația la masă: teme potrivite și teme interzise în business</li>
+            <li>Cine plătește, cine propune urarea, cum se încheie elegant un prânz</li>
+          </ul>
+          <span class="mod-tag">Dining Etiquette</span>
+        </div>
+
+        <div class="mod">
+          <span class="mod-n">08</span>
+          <div class="mod-time">16:00 — 17:45</div>
+          <div class="mod-title">Cultura Corporativă, Recepții & Cadouri de Afaceri</div>
+          <ul class="mod-pts">
+            <li>Etica în afaceri și cultura corporativă: valori, norme, consecințe reale</li>
+            <li>Comportamentul la recepții, cocktailuri, gale și evenimente profesionale</li>
+            <li>Cadourile de afaceri: când, ce, cum — și ce nu oferi niciodată</li>
+            <li>Managementul impresiei: cum ești perceput înainte de a vorbi</li>
+            <li>Comunicarea nonverbală: gesturi, postură, spațiu proxemic, contact vizual</li>
+          </ul>
+          <span class="mod-tag">Cultură & Recepții</span>
+        </div>
+      </div>
+
+      <div class="day-summary">
+        <span class="ico">🎯</span>
+        <p><strong>Ziua II se încheie cu:</strong> participanții au simulat o negociere completă, au practicat protocolul mesei formale și înțeleg cum funcționează comportamentul de statut în ierarhia organizațională.</p>
+      </div>
+    </div>
+
+    <!-- SEPARATOR -->
+    <div class="day-sep"><span>Ziua a treia</span></div>
+
+    <!-- ════ ZIUA III ════ -->
+    <div class="day-block" style="margin-top:28px;">
+      <div class="day-header">
+        <div class="day-pill">Ziua III</div>
+        <div class="day-title-box">
+          <h3>Culturi · Digital · <em>Brand Personal & Certificare</em></h3>
+        </div>
+      </div>
+
+      <div class="mods">
+        <div class="mod">
+          <span class="mod-n">09</span>
+          <div class="mod-time">09:00 — 11:00</div>
+          <div class="mod-title">Diferențe Culturale & Stiluri Naționale de Negociere</div>
+          <ul class="mod-pts">
+            <li>De ce eșuează parteneriatele din cauza diferențelor culturale neînțelese</li>
+            <li>Europa de Vest: Marea Britanie, Germania, Franța, Italia, Spania, Scandinavia</li>
+            <li>SUA: directness, time is money, contractul ca fundament absolut al relației</li>
+            <li>Orientul Mijlociu & Africa de Nord: relație înainte de afacere, timp, ospitalitate</li>
+            <li>Asia: Japonia (față), China (guanxi), Coreea de Sud, India — ierarhie și colectiv</li>
+            <li>Exercițiu: studii de caz reale — ce a mers greșit și de ce</li>
+          </ul>
+          <span class="mod-tag">Inteligență Culturală</span>
+        </div>
+
+        <div class="mod">
+          <span class="mod-n">10</span>
+          <div class="mod-time">11:15 — 12:30</div>
+          <div class="mod-title">Corespondența Electronică & Reputația Digitală</div>
+          <ul class="mod-pts">
+            <li>E-mailul de business: structură, ton, greșeli care costă relații și contracte</li>
+            <li>WhatsApp, Telegram, Slack în business — limite și reguli clare</li>
+            <li>LinkedIn: profilul care atrage parteneri serioși — audit live în grup</li>
+            <li>Videoconferința: cadru, iluminare, comportament, muting, background</li>
+            <li>Ce nu postezi niciodată dacă ești om de afaceri — lista completă</li>
+          </ul>
+          <span class="mod-tag">Digital & Reputație</span>
+        </div>
+      </div>
+
+      <div class="break-row">
+        <span class="bt">12:30 — 14:00</span>
+        <span class="bd">Pauză de prânz — Networking structurat cu prezentarea brandului personal în perechi</span>
+      </div>
+
+      <div class="mods">
+        <div class="mod">
+          <span class="mod-n">11</span>
+          <div class="mod-time">14:00 — 16:00</div>
+          <div class="mod-title">Brandul Personal & Sesiunea Finală de Integrare</div>
+          <ul class="mod-pts">
+            <li>Coerența imaginii: online, offline, formal, informal — același mesaj, același om</li>
+            <li>Cum îți definești valorile și mesajul personal de brand în 3 adjective clare</li>
+            <li>Exercițiu final: fiecare participant prezintă brandul personal în fața grupului</li>
+            <li>Sesiune de întrebări și situații reale din practica participanților</li>
+            <li>Plan personal de acțiune — ce implementezi în prima săptămână după training</li>
+          </ul>
+          <span class="mod-tag">Brand Personal</span>
+        </div>
+      </div>
+
+      <div class="break-row" style="margin-top:10px;">
+        <span class="bt">16:00 — 17:30</span>
+        <span class="bd">Ceremonia de certificare — Înmânarea certificatelor Elite Protocol™ · Cocktail de networking final</span>
+      </div>
+
+      <div class="day-summary">
+        <span class="ico">🏅</span>
+        <p><strong>Ziua III se încheie cu:</strong> fiecare participant pleacă cu certificatul Elite Protocol™, un plan personal de acțiune, manualul de referință și conexiunile valoroase din grupul format în cele 3 zile.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section class="sec sec--dark">
+  <div class="w">
+    <p class="eyebrow">Ce se schimbă</p>
+    <h2 class="sec-title">Rezultate <em>concrete</em><br>după 3 zile</h2>
+    <div class="out-grid">
+      <div class="out-item"><span class="out-n">01</span><div class="out-text"><h4>Autoritate vizuală</h4><p>Știi exact cum să te îmbraci și să te prezinți pentru orice context profesional.</p></div></div>
+      <div class="out-item"><span class="out-n">02</span><div class="out-text"><h4>Prima impresie controlată</h4><p>Protocoale complete de salut, introducere și autoprezentare în orice context.</p></div></div>
+      <div class="out-item"><span class="out-n">03</span><div class="out-text"><h4>Negocieri mai eficiente</h4><p>Cunoști stilul partenerilor din 15+ culturi și știi cum să te adaptezi fără să te pierzi.</p></div></div>
+      <div class="out-item"><span class="out-n">04</span><div class="out-text"><h4>Zero stres la masă</h4><p>Știi exact ce faci, în ce ordine și de ce — indiferent de nivelul de formalitate.</p></div></div>
+      <div class="out-item"><span class="out-n">05</span><div class="out-text"><h4>Comunicare cu impact</h4><p>Limbaj verbal și nonverbal care transmit încredere și profesionalism în mod natural.</p></div></div>
+      <div class="out-item"><span class="out-n">06</span><div class="out-text"><h4>Brand personal clar</h4><p>O imagine coerentă și memorabilă care lucrează pentru tine în orice context.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- METHODOLOGY -->
+<section class="sec sec--mid">
+  <div class="w">
+    <p class="eyebrow">Metodologie</p>
+    <h2 class="sec-title">Cum se predă <em>excelența</em></h2>
+    <p class="sec-lead">Nu prelegeri teoretice. Fiecare concept este testat imediat în condiții reale — cu feedback structurat și timp suficient pentru integrare reală.</p>
+    <div class="method-grid">
+      <div class="method-card"><div class="method-ico">🎭</div><h4>Role-play & simulări</h4><p>Negocieri, întâlniri, prânzuri reconstituite — feedback imediat pe grilă structurată.</p></div>
+      <div class="method-card"><div class="method-ico">📹</div><h4>Video feedback</h4><p>Te filmezi, te analizezi. Metoda care schimbă comportamentul definitiv.</p></div>
+      <div class="method-card"><div class="method-ico">🍽️</div><h4>Dining live</h4><p>Prânzul din Ziua I devine exercițiu practic real — nu teorie la tablă.</p></div>
+      <div class="method-card"><div class="method-ico">📘</div><h4>Manual personal</h4><p>Pocket guide tipărit elegant — referință pentru toate situațiile de business.</p></div>
+      <div class="method-card"><div class="method-ico">🏅</div><h4>Certificare</h4><p>Certificat Elite Protocol™ înmânat în ceremonie la finalul zilei a treia.</p></div>
+      <div class="method-card"><div class="method-ico">🔄</div><h4>Follow-up 30 zile</h4><p>Sesiune online de consolidare la 30 de zile — inclusă în toate pachetele.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="sec sec--dark">
+  <div class="w">
+    <p class="eyebrow">Investiție</p>
+    <h2 class="sec-title">Opțiuni de <em>participare</em></h2>
+    <p class="sec-lead">3 zile de formare intensivă. Prețuri calculate pentru piața Republicii Moldova.</p>
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="pl">Participant Individual</div>
+        <div class="pa"><sup>€</sup>690</div>
+        <span class="pp">per persoană / 3 zile complete</span>
+        <span class="psub">≈ 13 800 MDL</span>
+        <ul class="pf">
+          <li>Toate cele 11 module</li>
+          <li>Business Lunch cele 3 zile inclus</li>
+          <li>Manual Elite Protocol™ tipărit</li>
+          <li>Audit individual de imagine</li>
+          <li>Certificat Elite Protocol™</li>
+          <li>Sesiune follow-up online la 30 zile</li>
+          <li>Grup: max. 12 participanți</li>
+        </ul>
+      </div>
+      <div class="price-card feat">
+        <div class="feat-badge">Recomandat</div>
+        <div class="pl">Pachet Corporate</div>
+        <div class="pa"><sup>€</sup>4 200</div>
+        <span class="pp">pentru echipă de până la 10 persoane</span>
+        <span class="psub">≈ 84 000 MDL · €420/persoană</span>
+        <ul class="pf">
+          <li>Program dedicat companiei dvs.</li>
+          <li>Personalizare după industrie și nevoi</li>
+          <li>Formare la sediul companiei</li>
+          <li>10 certificate Elite Protocol™</li>
+          <li>10 manuale tipărite</li>
+          <li>2 sesiuni de follow-up incluse</li>
+          <li>Raport de grup post-training</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <div class="pl">VIP Executive 1:1</div>
+        <div class="pa"><sup>€</sup>1 100</div>
+        <span class="pp">sesiune individuală · 3 zile</span>
+        <span class="psub">≈ 22 000 MDL</span>
+        <ul class="pf">
+          <li>Consultanță 1:1 cu Natalia Croitor</li>
+          <li>Audit complet de imagine & comportament</li>
+          <li>Plan personal de acțiune detaliat</li>
+          <li>Module selectate după nevoi specifice</li>
+          <li>3 sesiuni de follow-up incluse</li>
+          <li>Flexibilitate maximă de program</li>
+        </ul>
+      </div>
+    </div>
+    <p class="price-note">
+      <strong>Early bird:</strong> Înscrierea cu minimum 3 săptămâni înainte — reducere 10%.<br>
+      <strong>3+ persoane din aceeași companie</strong> la sesiunea publică — reducere 15%.<br>
+      Facturare disponibilă pentru persoane juridice.
+    </p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <p class="eyebrow" style="justify-content:center;">Locuri limitate · Maximum 12 participanți per sesiune</p>
+  <h2 class="sec-title">Pregătește-te să fii<br><em>de neuitat</em></h2>
+  <p class="cta-sub">Selectăm participanții pentru a asigura un grup de calitate<br>și o experiență de networking cu adevărat valoroasă.</p>
+  <button class="cta-btn">Solicită o consultație gratuită</button>
+  <p class="cta-contact">eliteprotocol.md · Chișinău, Republica Moldova</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo">Elite Protocol</div>
+  <p>Institut de Etichetă, Protocol și Imagine · © 2026</p>
+</footer>
+
+</body>
+</html>

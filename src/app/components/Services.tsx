@@ -7,11 +7,20 @@ import { ServiceModal } from './ServiceModal';
 
 const serviceNumbers = ['01', '02', '03'];
 
+interface CurriculumSection {
+  label: string;
+  items: { name: string; detail: string }[];
+}
+
 interface ServiceCardData {
   number: string;
   title: string;
+  audience: string;
   description: string;
   features: string[];
+  curriculum: CurriculumSection[];
+  outcomes: string[];
+  priceNote: string;
   learnMore: string;
 }
 
@@ -49,11 +58,19 @@ function ServiceCard({ service, index, onLearnMore }: { service: ServiceCardData
 
       {/* Title */}
       <h3
-        className="text-2xl font-bold mb-4 transition-colors duration-500"
+        className="text-2xl font-bold mb-2 transition-colors duration-500"
         style={{ fontFamily: 'Cinzel, serif', color: '#3d4a8c' }}
       >
         {service.title}
       </h3>
+
+      {/* Audience */}
+      <div
+        className="text-[9px] tracking-[0.2em] font-medium mb-4 uppercase"
+        style={{ color: 'var(--primary)' }}
+      >
+        {service.audience}
+      </div>
 
       {/* Description */}
       <p
@@ -89,15 +106,19 @@ export function Services() {
   const { t, tRaw } = useTranslation();
   const [selectedService, setSelectedService] = useState<number | null>(null);
 
-  const cards: ServiceCardData[] = (tRaw('services.cards') as { title: string; description: string; features: string[] }[]).map(
-    (card, i) => ({
-      number: serviceNumbers[i],
-      title: card.title,
-      description: card.description,
-      features: card.features,
-      learnMore: t('services.learnMore'),
-    }),
-  );
+  const cards: ServiceCardData[] = (
+    tRaw('services.cards') as Omit<ServiceCardData, 'number' | 'learnMore'>[]
+  ).map((card, i) => ({
+    number: serviceNumbers[i],
+    title: card.title,
+    audience: card.audience,
+    description: card.description,
+    features: card.features,
+    curriculum: card.curriculum,
+    outcomes: card.outcomes,
+    priceNote: card.priceNote,
+    learnMore: t('services.learnMore'),
+  }));
 
   return (
     <section
